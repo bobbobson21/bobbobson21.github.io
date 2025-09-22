@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+
+<html>
+<head style = "margin-left:0px; margin-top:0px; margin-bottom:0px; margin-right:0px;">
+<title>post creator</title>
+<link rel="stylesheet" href="../../../css_main.css">
+<link rel="stylesheet" href="../../css_editor.css">
+</head>
+
+<body style="background-color: #323232; margin-left:0px; margin-right:0px; margin-top:0px; margin-bottom:0px;">
+
+<!--SECTION: build posts-->
+<script>
+function BuildFormPost() //get PhotoCount
+{
+	var PostUID = Date.now().toString()
+	var UserTagTypes = ['ERROR', 'user', 'user-hidden', 'uni', 'uni+indie', 'collage', 'indie', 'job'];
+	var UserTagData = [
+	'', 
+	'<img class="tagbox" src = "./images/i_taguser.png"></img>', 
+	'<img class="tagbox" src = "./images/i_taguser.png"></img><img class="tagbox" src = "./images/i_taghidden.png"></img>', 
+	'<img class="tagbox-long" src = "./images/i_taguni.png"></img>', 
+	'<img class="tagbox-long" src = "./images/i_taguni.png"></img><img class="tagbox-long" src = "./images/i_tagindie.png"></img>',
+	'<img class="tagbox-long" src = "./images/i_tagcollage.png"></img>', 
+	'<img class="tagbox-long" src = "./images/i_tagindie.png"></img>', 
+	'<img class="tagbox" src = "./images/i_tagjob.png"></img>', 
+	];
+	
+	
+	var Res_Title = document.getElementsByName("in_title")[0].value;
+	var Res_TypeIndex = Number(document.getElementsByName("in_search_tags")[0].value);
+	if(Res_TypeIndex == NaN || Res_TypeIndex >= UserTagTypes.length)
+	{
+		navigator.clipboard.writeText("error: search tags were invalid")
+		return;
+	}
+	
+	var Res_DescRes = "";
+	var Res_Description = document.getElementsByName("in_des")[0].value;
+	var Res_DescriptionSize = document.getElementsByName("in_des_space")[0].value;
+	var Res_SideImagesShouldBeOn = Number(document.getElementsByName("in_layout")[0].value);
+	if(Res_SideImagesShouldBeOn == NaN)
+	{
+		navigator.clipboard.writeText("error: layout was invalid")
+		return;
+	}
+	
+	var Res_ImageRes = "";
+	var Res_blackZoom = document.getElementsByName("in_BlackZoomTinted")[0].value;
+	var Res_HidePhotosAfter = Number(document.getElementsByName("in_collapsPhotosAfter")[0].value);
+	if(Res_HidePhotosAfter == NaN)
+	{
+		navigator.clipboard.writeText("error: in_collapsPhotosAfter was invalid")
+		return;
+	}
+
+	var result = "";
+	result = '<div class = "ContentBoxSmall-wapper" name = "'+ UserTagTypes[Res_TypeIndex] + '">\n<div class = "ContentBoxSmall">\n';
+	result += '<table style="width:100%; margin-top:0px; margin-bottom:-20px;">\n<tr>\n<th style="width:50%;"><h1>'+ Res_Title +'</h1></th>\n<th style="width:50%">'+ UserTagData[Res_TypeIndex] +'</th>\n</tr>\n</table>\n';	
+	result += '<table style="width:100%;">\n<tr>\n'
+	
+	for(var i = 0; i < PhotoCount; i++)
+	{
+		var temp = '';
+		var tempzoom = ''
+		var image = document.getElementsByName("photo_slot_result_"+i.toString())[0].value;
+		
+		if(Res_blackZoom.includes(i.toString()+",") == true)
+		{
+			tempzoom = 'b';
+		}
+		
+		if(in_layout == 0)
+		{
+			temp = "margin-left: 5px;";
+		}
+		
+		if(i == Res_HidePhotosAfter)
+		{
+		 Res_ImageRes += '<button onclick='+"'"+'ToggleContent( "img_post'+PostUID+'" ); ToggleText( "img_post'+PostUID+'_button", "show more images ▲", "show more images ▼" );'+"'"+'><p name = "img_post'+PostUID+'_button" class = "dropdown">show more images ▲</p></button>\n<div name = "img_post'+PostUID+'"> \n\n';
+		}
+		
+		Res_ImageRes += '<img src = "./images/postsimg/'+ image +'" style = "width: 95%; height: 95%; '+ temp +'">\n<button onclick='+"'"+'ShowContent( "ImageView_Big" ); SetImage( "ImageView_Big_Img", "./images/postsimg/'+image+'" )'+"'"+' style="background-color: rgba(0, 0, 0, 0); border-width: 0px; position: absolute; margin-top: 5px; margin-left: -30px; height:20px;">\n<img src = "./images/i_zoom'+tempzoom+'.png" style = "min-height: 100%; min-width: 100%; width: 100%; height: 100%; cursor: pointer; cursor: pointer;"></img> <!--AccessBigPhotoView-->\n</button>\n</img>\n\n'
+	}
+	if(PhotoCount >= Res_HidePhotosAfter)
+	{
+		Res_ImageRes += "</div>\n";
+		Res_ImageRes += '<@@@BOBULAS@@@> HideContent( "img_post'+PostUID+'" ); <###BOBULAS###>\n';
+	}
+	
+	var lines = Res_Description.split(/\r\n|\r|\n/g)
+	for(var i = 0; i < lines.length; i++)
+	{
+		if(lines[i] != "")
+		{
+			if(Res_SideImagesShouldBeOn == 0)
+			{
+				Res_DescRes += '<p>'+lines[i]+'</p>\n';
+			}
+			else
+			{
+				Res_DescRes += '<p class = "margin">'+lines[i]+'</p>\n';
+			}
+		}
+	}
+	
+	if(Res_SideImagesShouldBeOn == 0)
+	{
+		result += '<th style="width:auto; vertical-align: top;">\n' +Res_ImageRes + '</th>\n';
+		result += '<th style="width:'+Res_DescriptionSize+'; vertical-align: top;">\n' +Res_DescRes + '</th>\n';
+	}
+	else
+	{
+		result += '<th style="width:'+Res_DescriptionSize+'; vertical-align: top;">\n' +Res_DescRes + '</th>\n';
+		result += '<th style="width:auto; vertical-align: top;">\n' +Res_ImageRes + '</th>\n';
+	}
+	
+	result += '</tr>\n</table>\n'	
+
+	var Res_Vid = document.getElementsByName("in_vid_A")[0].value;
+	var Res_VidTrallier = document.getElementsByName("in_vid_B")[0].value;
+	var Res_VidGameplay = document.getElementsByName("in_vid_C")[0].value;
+
+	if(Res_Vid != "(you can leave this blank) embed video here...")
+	{
+		result += '<div></div>\n';
+		result += '<button onclick='+"'"+'ToggleContent( "vid_A_post'+PostUID+'" ); ToggleText( "vid_A_post'+PostUID+'_button", "show video ▲", "show video ▼" );'+"'"+'><p name = "vid_A_post'+PostUID+'_button" class = "dropdown"> show video ▲</p></button>\n';
+		result += '<div name = "vid_A_post'+PostUID+'" class = "VideoWapper"><iframe src="'+Res_Vid+'" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>\n';
+		result += '<@@@BOBULAS@@@>HideContent( "vid_A_post'+PostUID+'" );<###BOBULAS###>\n';
+	}
+	
+	if(Res_VidTrallier != "(you can leave this blank) embed video here...")
+	{
+		result += '<div></div>\n';
+		result += '<button onclick='+"'"+'ToggleContent( "vid_B_post'+PostUID+'" ); ToggleText( "vid_B_post'+PostUID+'_button", "show trailer video ▲", "show trailer video ▼" );'+"'"+'><p name = "vid_B_post'+PostUID+'_button" class = "dropdown"> show trailer video ▲</p></button>\n';
+		result += '<div name = "vid_B_post'+PostUID+'" class = "VideoWapper"><iframe src="'+Res_VidTrallier+'" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>\n';
+		result += '<@@@BOBULAS@@@> HideContent( "vid_B_post'+PostUID+'" ); <###BOBULAS###>\n';
+	}
+	
+	if(Res_VidGameplay != "(you can leave this blank) embed video here...")
+	{
+		result += '<div></div>\n';
+		result += '<button onclick='+"'"+'ToggleContent( "vid_C_post'+PostUID+'" ); ToggleText( "vid_C_post'+PostUID+'_button", "show gameplay video ▲", "show gameplay video ▼" );'+"'"+'><p name = "vid_C_post'+PostUID+'_button" class = "dropdown"> show gameplay video ▲</p></button>\n';
+		result += '<div name = "vid_C_post'+PostUID+'" class = "VideoWapper"><iframe src="'+Res_VidGameplay+'" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>\n';
+		result += '<@@@BOBULAS@@@> HideContent( "vid_C_post'+PostUID+'" ); <###BOBULAS###>\n';
+	}
+	
+	var Res_Skills = document.getElementsByName("in_skills")[0].value;
+	if(Res_Skills != "skills here...")
+	{
+		result += '\n<p class = "tags">skills developed: ';
+		result += Res_Skills;
+		result += '</p>\n\n';
+	}
+	
+	result = result.replaceAll( "@@@BOBULAS@@@", "script" );
+	result = result.replaceAll( "###BOBULAS###", "/script" );
+	result += '</div>\n</div>\n';
+	
+	navigator.clipboard.writeText(result);
+}
+
+function BuildYearPost()
+{
+	var result = "";
+	var Res_Title = document.getElementsByName("in_year")[0].value;
+
+	result += '<!--'+Res_Title+'-->\n';
+	result += '<div class = "ContentBoxSmall-wapper" name = "year" id = "'+Res_Title+'">\n';
+	result += '<div class="ContentBoxSmall-year">\n';
+	result += '<h2 style="width:100%;">'+Res_Title+'</h2>\n';
+	result += '</div>\n';
+	result += '</div>\n';
+	
+	navigator.clipboard.writeText(result);
+}
+
+</script>
+
+<!--SECTION: backgroung content-->
+<img name = "background_img" src = "../../../images/backgrounds/i_bg_-1.png" style = "position: fixed;width: 100vw; height: 100vh; top: 0px;"></img>
+
+<!--SECTION: title content-->
+<div style="background-color: rgba(0, 0, 0, 0.7);  height: 50px; width: 100vw; position: relative; top: 0px; margin-top:-32px; margin-bottom:0px;">
+<h3>post creator</h3>
+</div>
+
+<!--SECTION: form creator-->
+<div class = "ContentBoxSmall-wapper">
+<div class="ContentBoxSmall-year">
+<h2 style="width:100%;">post type: form (this dose not give you access to post the form, it only allow you to make it)</h2>
+</div>
+</div>
+
+
+<div class = "ContentBoxSmall-wapper">
+<div class = "ContentBoxSmall">
+
+<table style="width:100%; margin-top:0px; margin-bottom:-20px;">
+<tr>
+<th style="width:auto;"><h1>title here:</h1></th>
+<th style="width:92%;"><input type="text" id="in_title" name="in_title" class = "title" value="title here..."></input></th>
+</tr>
+</table>
+
+<div>
+<h1>description here:</h1>
+<textarea type="text" id="in_des" name="in_des" class = "description" value="title here..."></textarea>
+</div>
+
+<table style="width:100%; margin-top:0px; margin-bottom:-20px;">
+<tr>
+<th style="width:auto;"><h1>description space:</h1></th>
+<th style="width:83%;"><input type="text" id="in_des_space" name="in_des_space" class = "title" value="80%"></input></th>
+</tr>
+</table>
+
+<table style="width:100%; margin-top:0px; margin-bottom:-20px;">
+<tr>
+<th style="width:auto;"><h1>skills developed here:</h1></th>
+<th style="width:83%;"><input type="text" id="in_skills" name="in_skills" class = "title" value="skills here..."></input></th>
+</tr>
+</table>
+
+<table style="width:100%; margin-top:0px; margin-bottom:-20px;">
+<tr>
+<th style="width:auto;"><h1>(video type) video here:</h1></th>
+<th style="width:82%;"><input type="text" id="in_vid_A" name="in_vid_A" class = "title" value="(you can leave this blank) embed video here..."></input></th>
+</tr>
+</table>
+
+<table style="width:100%; margin-top:0px; margin-bottom:-20px;">
+<tr>
+<th style="width:auto;"><h1>(trailer type) video here:</h1></th>
+<th style="width:81%;"><input type="text" id="in_vid_B" name="in_vid_B" class = "title" value="(you can leave this blank) embed video here..."></input></th>
+</tr>
+</table>
+
+<table style="width:100%; margin-top:0px; margin-bottom:-20px;">
+<tr>
+<th style="width:auto;"><h1>(gameplay) video here:</h1></th>
+<th style="width:82%;"><input type="text" id="in_vid_C" name="in_vid_C" class = "title" value="(you can leave this blank) embed video here..."></input></th>
+</tr>
+</table>
+
+<!--tag selection-->
+
+<table style="width:100%; margin-top:0px; margin-bottom:-20px;">
+<tr>
+<th style="width:auto;"><h1>search tags:</h1></th>
+<th style="width:90%;">
+<select name="in_search_tags" id="in_search_tags" class = "searchtags">
+  <option value="0">none</option>
+  <option value="1">user</option>
+  <option value="2">user + hidden</option>
+  <option value="3">uni</option>
+  <option value="4">uni + indie</option>
+  <option value="5">collage</option>
+  <option value="6">indie</option>
+  <option value="7">job</option>
+</select>
+</th>
+</tr>
+</table>
+
+<table style="width:100%; margin-top:0px; margin-bottom:-20px;">
+<tr>
+<th style="width:auto;"><h1>side photos should be on:</h1></th>
+<th style="width:80%;">
+<select name="in_layout" id="in_layout" class = "searchtags">
+  <option value="0">left</option>
+  <option value="1">right</option>
+</select>
+</th>
+</tr>
+</table>
+
+<table style="width:100%; margin-top:0px; margin-bottom:-20px;">
+<tr>
+<th style="width:auto;"><h1>collapse photos after:</h1></th>
+<th style="width:82%;"><input type="number" id="in_collapsPhotosAfter" name="in_collapsPhotosAfter" class = "title" value="2"></input></th>
+</tr>
+</table>
+
+<table style="width:100%; margin-top:0px; margin-bottom:-20px;">
+<tr>
+<th style="width:auto;"><h1>blacken zoom tint on photos:</h1></th>
+<th style="width:78%;"><input type="text" id="in_BlackZoomTinted" name="in_BlackZoomTinted" class = "title" value="-9999,-9999,-9999,"></input></th>
+</tr>
+</table>
+
+<script>
+var PhotoCount = 0
+
+function AddPhotoSlot()
+{
+	var tableContainer = document.createElement("table");
+	tableContainer.style.width = "100%";
+	tableContainer.style.marginTop = "0px";
+	tableContainer.style.marginBottom = "-20px";
+	tableContainer.setAttribute( "name", "photo_slot_" + PhotoCount.toString());
+	document.getElementsByName("photoSlotContainer")[0].appendChild(tableContainer);
+	
+	var tableContainer_Row = document.createElement("tr");
+	tableContainer.appendChild( tableContainer_Row );
+	
+	var tableContainer_Collum_L = document.createElement("th");
+	tableContainer_Collum_L.style.width = "auto";
+	tableContainer_Row.appendChild( tableContainer_Collum_L );
+		
+	var tableContainer_Collum_R = document.createElement("th");
+	tableContainer_Collum_R.style.width = "82%";
+	tableContainer_Row.appendChild( tableContainer_Collum_R );
+
+	var lable = document.createElement("h1");
+	var textNode = document.createTextNode("image name here:");
+	lable.appendChild(textNode);
+	tableContainer_Collum_L.appendChild( lable );
+
+	var input = document.createElement("input");
+	input.type = "text";
+	input.id = "photo_slot_result_" + PhotoCount.toString();
+	input.className += "title";
+	input.value = "photo here...";
+	
+	input.setAttribute( "name", "photo_slot_result_"+ PhotoCount.toString());
+	tableContainer_Collum_R.appendChild( input );	
+
+	PhotoCount++
+}
+
+function RemovePhotoSlot()
+{
+	PhotoCount--
+	
+	var data = document.getElementsByName("photo_slot_"  + PhotoCount.toString())[0]
+	data.remove()
+}
+
+</script>
+
+<button onclick='AddPhotoSlot()'><p class = "dropdown">Add photo</p></button>
+<button onclick='RemovePhotoSlot()'><p class = "dropdown">Remove photo</p></button>
+
+<div name = "photoSlotContainer">
+
+</div>
+
+<div style="background-color: rgba(0, 0, 0, 0.7); margin-top:64px; margin-bottom:0px;">
+<button onclick='BuildFormPost()'><p class = "dropdown">build post</p></button>
+</div>
+
+</div>
+</div>
+
+<!--SECTION: year creator content-->
+<div class = "ContentBoxSmall-wapper">
+<div class="ContentBoxSmall-year">
+<h2 style="width:100%;">post type: year (this dose not give you access to post the year divider, it only allow you to make it)</h2>
+</div>
+</div>
+
+<div class = "ContentBoxSmall-wapper">
+<div class = "ContentBoxSmall">
+
+<table style="width:100%; margin-top:0px; margin-bottom:-20px;">
+<tr>
+<th style="width:auto;"><h1>year here:</h1></th>
+<th style="width:92%;"><input type="text" id="in_year" name="in_year" class = "title" value="title here..."></input></th>
+</tr>
+</table>
+
+<script>
+	var date = new Date();
+	document.getElementsByName("in_year")[0].value = date.getFullYear().toString();
+</script>
+
+<div style="background-color: rgba(0, 0, 0, 0.7); margin-top:64px; margin-bottom:0px;">
+<button onclick='BuildYearPost()'><p class = "dropdown">build year divider</p></button>
+</div>
+
+</div>
+</div>
+
+</body>
+</html>
+

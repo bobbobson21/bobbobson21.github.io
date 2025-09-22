@@ -1,0 +1,4 @@
+Disallow: pages/private/
+Disallow: pages/index.html
+Disallow: pages/page.html
+ 

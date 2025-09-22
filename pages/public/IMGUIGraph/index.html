@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+
+<html>
+<head style = "margin-left:0px; margin-top:0px; margin-bottom:0px; margin-right:0px;">
+<title>IMGUI Graph</title>
+<link rel="stylesheet" href="../../../css_main.css">
+<link rel="stylesheet" href="../Unnio/css_unnio.css">
+<script src = "../../../contentModifyer.js"></script>
+</head>
+
+<body style="background-color: #323232; margin-left:0px; margin-right:0px; margin-top:0px; margin-bottom:0px;" onresize="SizeCheck()">
+
+<!--SECTION: backgroung content-->
+<img name = "background_img" src = "subimages/backgrounds/i_bg_-1.png" style = "position: fixed;width: 100vw; height: 100vh; top: 0px;"></img>
+<canvas name = "background_canvas" width="100vw" height="100vh" style = "position: fixed; top: 0px; margin-top:0px; margin-bottom:0px;"></canvas>
+
+<script>
+	var Arr_CanvasPointDataCount = 120
+	var Arr_CanvasPointData = new Array(Arr_CanvasPointDataCount)
+	let FirstFrameTimePoint;
+
+function SetRandomBackground()
+{
+	var MaxBackgrounds = 3
+	var Index = GetRandomIntInRange( 0, MaxBackgrounds )
+
+SetImage("background_img", "./subimages/backgrounds/i_bg_" + Index.toString() + ".png" )
+}
+
+function SetRandomCanvasBG()
+{
+	for(var i = 0; i < Arr_CanvasPointDataCount; i++) 
+	{
+		var temp = new Array(7);
+		var brightness = Math.random() *0.1;
+		var brightness_g = Math.random() *0.8;
+		var brightness_b =  brightness_g -(Math.random() *0.2);
+		
+		temp[0] = [Math.random(), Math.random()];
+		temp[1] = [Math.random(), Math.random()];
+		temp[2] = [Math.random(), Math.random()];
+		
+		var area = 0.2
+		temp[3] = [temp[0][0] + ((Math.random() *(area *2)) -area), temp[0][1] + ((Math.random() *(area *2)) -area)];
+		temp[4] = [temp[1][0] + ((Math.random() *(area *2)) -area), temp[1][1] + ((Math.random() *(area *2)) -area)];
+		temp[5] = [temp[2][0] + ((Math.random() *(area *2)) -area), temp[2][1] + ((Math.random() *(area *2)) -area)];
+		
+		temp[6] = [brightness,brightness + brightness_g,brightness + brightness_b,Math.random() *0.07];
+		
+		Arr_CanvasPointData[i] = temp;
+	}
+}
+
+function AnimateCanvasDataPoints(TimeStamp)
+{
+	requestAnimationFrame(AnimateCanvasDataPoints)
+	
+	var Time = 0;
+	
+	if(	FirstFrameTimePoint == undefined && TimeStamp != undefined)
+	{
+		FirstFrameTimePoint = TimeStamp;
+	}
+	
+	if(TimeStamp != undefined)
+	{
+		Time = TimeStamp - FirstFrameTimePoint;
+	}
+	
+	var CanvasElement = document.getElementsByName("background_canvas")[0];
+	CanvasElement.width = window.innerWidth;
+	CanvasElement.height = window.innerHeight;
+
+	var C = CanvasElement.getContext('2d');
+	C.clearRect( 0, 0, CanvasElement.width, CanvasElement.height )
+	
+	var lerpTime = Math.abs( Math.sin( Time /10000 ))
+
+	for(var i = 0; i < Arr_CanvasPointDataCount; i++) 
+	{
+		C.fillStyle = "rgba(" + Arr_CanvasPointData[i][6][0].toString() *255 + ", "+ Arr_CanvasPointData[i][6][1].toString() *255 +", "+ Arr_CanvasPointData[i][6][2].toString() *255 +", "+ Arr_CanvasPointData[i][6][3].toString() +")";
+		
+		C.beginPath();
+		
+		var Offset_BR = 3;
+		var Offset_TL = 1;
+		
+		var point_A_X = Lerp( lerpTime, (Arr_CanvasPointData[i][0][0] * (window.innerWidth *Offset_BR)) -(window.innerWidth *Offset_TL), (Arr_CanvasPointData[i][3][0] * (window.innerWidth *Offset_BR)) -(window.innerWidth *Offset_TL) );
+		var point_B_X = Lerp( lerpTime, (Arr_CanvasPointData[i][1][0] * (window.innerWidth *Offset_BR)) -(window.innerWidth *Offset_TL), (Arr_CanvasPointData[i][4][0] * (window.innerWidth *Offset_BR)) -(window.innerWidth *Offset_TL) );
+		var point_C_X = Lerp( lerpTime, (Arr_CanvasPointData[i][2][0] * (window.innerWidth *Offset_BR)) -(window.innerWidth *Offset_TL), (Arr_CanvasPointData[i][5][0] * (window.innerWidth *Offset_BR)) -(window.innerWidth *Offset_TL) );
+		
+		var point_A_Y = Lerp( lerpTime, (Arr_CanvasPointData[i][0][1] * (window.innerHeight *Offset_BR)) -(window.innerHeight *Offset_TL), (Arr_CanvasPointData[i][3][1] * (window.innerHeight *Offset_BR)) -(window.innerHeight *Offset_TL) );
+		var point_B_Y = Lerp( lerpTime, (Arr_CanvasPointData[i][1][1] * (window.innerHeight *Offset_BR)) -(window.innerHeight *Offset_TL), (Arr_CanvasPointData[i][4][1] * (window.innerHeight *Offset_BR)) -(window.innerHeight *Offset_TL) );
+		var point_C_Y = Lerp( lerpTime, (Arr_CanvasPointData[i][2][1] * (window.innerHeight *Offset_BR)) -(window.innerHeight *Offset_TL), (Arr_CanvasPointData[i][5][1] * (window.innerHeight *Offset_BR)) -(window.innerHeight *Offset_TL) );
+		
+		C.moveTo(point_A_X, point_A_Y);
+		C.lineTo(point_B_X, point_B_Y);
+		C.lineTo(point_C_X, point_C_Y);
+		C.lineTo(point_A_X, point_A_Y);
+		
+		C.fill();
+		C.closePath();
+	}
+}
+
+SetRandomCanvasBG();
+SetRandomBackground();
+
+AnimateCanvasDataPoints();
+</script>
+
+
+<!--SECTION: title content-->
+<div style="height: 70vh; width: 100vw; position: relative; top: 0">
+<h4 name = "TitleContent" style = "text-align: center; margin-top:30vh; margin-bottom:0vh;">IMGUI graph for unity</h4>
+
+<div style = "display: flex; justify-content: center; align-items: center; margin-top: 32px">
+<button class = "box" style = "background: rgba(0, 150, 255, 1);" onclick='Download("https://github.com/bobbobson21/IMGUIgraphRelease/archive/refs/heads/main.zip", "IMGUIgraphRelease")'><p class = "buttontext">download latest version</p></button>
+<button class = "box" style = "background: rgba(0, 100, 255, 1);" onclick='window.open("https://assetstore.unity.com/preview/329675/1102344","_blank");'><p class = "buttontext">visit store page</p></button>
+<button class = "box" style = "background: rgba(35, 134, 54, 1);" onclick='window.open("https://github.com/bobbobson21/IMGUIgraphRelease","_blank");'><p class = "buttontext">view source code</p></button>
+<button class = "box" style = "background: rgba(255, 120, 0, 1);" onclick='window.open("https://assetstore.unity.com/preview/329675/1102344#releases","_blank")'><p class = "buttontext">view change log</p></button>
+</div>
+
+<div name = "ButtonAreaBottom" style = "display: flex; justify-content: center;align-items: center; margin-top: 10px">
+<button class = "box" style = "background: rgba(0, 255, 50, 0.25);" onclick='document.getElementById("goto_install").scrollIntoView({behavior: "smooth"});' style = "background-color: rgba(0, 0, 0, 0); border-width: 0px;"><p class = "buttontext">how to install ▼</p></button>
+<button class = "box" style = "background: rgba(0, 255, 50, 0.25);" onclick='document.getElementById("goto_postsMain").scrollIntoView({behavior: "smooth"});' style = "background-color: rgba(0, 0, 0, 0); border-width: 0px;"><p class = "buttontext">learn more about IMGUI Graph ▼</p></button>
+</div>
+</div>
+
+<!--SECTION: post content-->
+<div name = "PostArea">
+<div class = "ContentBoxSmall-wapper" style = "margin-bottom: 40px;">
+<div class = "ContentBoxSmall" id = "goto_install">
+<h3 style = "font-weight: 1; margin-bottom: 20px;">How to install</h3>
+
+<h2 style = "font-weight: 1; margin-top: -8px;">To install this utility you can get it either though the unity asset store or if you want to bundle it with your work you can get it thought github</h2>
+<h2 style = "font-weight: 1; margin-top: 30px;">If you are getting it though github all you have to do is export the zip file then take the Assets and drag it the root folder of your unity project and hit replace if a pop-up comes up.</h2>
+<h2 style = "font-weight: 1; margin-top: 30px;">If you are getting it though the unity asset store it is the same as getting everything else you get though the unity asset store.</h2>
+</div>
+</div>
+
+<div class = "ContentBoxSmall-wapper" style = "margin-bottom: -20px;">
+<div class = "ContentBoxSmall" id = "goto_postsMain">
+<h3 style = "font-weight: 1; margin-bottom: 20px;">What is IMGUI Graph</h3>
+<table style="width:100%;">
+<tr>
+<th style="width:auto; vertical-align: top;">
+<img src = "./subimages/posts/Screenshot 2025-08-15 125108.png" style = "width: 95%; height: 95%; ">
+</img>
+
+</th>
+<th style="width:65%; vertical-align: top;">
+<h2 style = "font-weight: 1; margin-top: -8px;">IMGUI Graph is a tool designed for the unity engine editor windows. It is also designed to work in IMGUI which is unity's way of turning code to UI, without needing uxml files. This tool is designed to bring the functionality of creating a graph editor to IMGUI making it easier for programmer to create there own graph editor</h2>
+<h2 style = "font-weight: 1; margin-top: 30px;">IMGUI Graph is also designed to minimize the amount of work required, to do complex thing like make nodes that can be liked together, and smiple thing like delete nodes or add them in the first place.</h2>
+</th>
+
+</tr>
+</table>
+</div>
+</div>
+
+<div class = "ContentBoxSmall-wapper" style = "margin-bottom: -20px;">
+<div class = "ContentBoxSmall">
+<h3 style = "font-weight: 1; margin-bottom: 20px;">Customization</h3>
+<table style="width:100%;">
+<tr>
+
+<th style="width:65%; vertical-align: top;">
+<h2 style = "font-weight: 1; margin-top: -8px;">IMGUI Graph's are fully customizable from everything about how the nodes looks, to how the very graph its self can be interacted with. The only thing you can't really change that much is the background but you can at leas give it a grid appearance.</h2>
+<h2 style = "font-weight: 1; margin-top: 30px;">You can even set what types of pins there are on a node and what they can connect to and where those pins are and you can even make it so the connections render behind or over the nodes.</h2>
+</th>
+
+<th style="width:auto; vertical-align: top;">
+<img src = "./subimages/posts/Screenshot 2025-08-18 213821.png" style = "width: 95%; height: 95%; "></img>
+</th>
+
+</tr>
+</table>
+</div>
+</div>
+
+<div class = "ContentBoxSmall-wapper" style = "margin-bottom: -20px;">
+<div class = "ContentBoxSmall">
+<h3 style = "font-weight: 1; margin-bottom: 20px;">Extra feature</h3>
+<table style="width:100%;">
+<tr>
+
+<th style="width:auto; vertical-align: top;">
+<img src = "./subimages/posts/Screenshot 2025-08-15 125158.png" style = "width: 95%; height: 95%; "></img>
+</th>
+
+<th style="width:65%; vertical-align: top;">
+<h2 style = "font-weight: 1; margin-top: -8px;">There are a whole ton of extra features in the nodes alone designed to facilitate connecting or un-connecting nodes and rendering those connections.</h2>
+<h2 style = "font-weight: 1; margin-top: 30px;">But apart from that we also have two pop up menus which are designed to easily allow one to add a node or change something on a node. Both these menus are also really easy to set up for programmers but they are also easy for user to use making them the best of both worlds.</h2>
+</th>
+
+</tr>
+</table>
+</div>
+</div>
+</div>
+
+<!--SECTION: top box content-->
+<div style = "width: 100vw; position: fixed; top:7px; display: flex; justify-content: right; align-items: right;">
+<button name = "ScrollToTop_box" class = "box" style = "background: rgba(0, 150, 255, 0.25);" onclick='window.scrollTo({ top: 0, behavior: "smooth" });' style = "background-color: rgba(0, 0, 0, 0); border-width: 0px;"><p class = "buttontext" name = "ScrollToTop_text">back to top ▲</p></button>
+</div>
+
+<script>
+function AnimateScrollToTopBox()
+{
+	requestAnimationFrame( AnimateScrollToTopBox )
+	
+	var MaxAlphaBox = 0.25;
+	var MaxAlphaText = 1;
+	
+	var AnimationPoint = Math.min( window.scrollY / window.innerHeight, 1)
+	
+	var BoxElement = document.getElementsByName("ScrollToTop_box")[0];
+	var TextElement = document.getElementsByName("ScrollToTop_text")[0];
+	
+	
+	if(AnimationPoint == 0)
+	{
+		HideContent("ScrollToTop_box")
+	}
+	else
+	{
+		ShowContent("ScrollToTop_box")
+	}
+	
+	BoxElement.style.background = "rgba(0, 255, 50, "+ Lerp( AnimationPoint, 0, MaxAlphaBox ).toString() +")";
+	TextElement.style.color = "rgba(255, 255, 255, "+ Lerp( AnimationPoint, 0, MaxAlphaText ).toString() +")";
+}
+
+AnimateScrollToTopBox()
+</script>
+
+<script>
+function SizeCheck()
+{
+	var WinWidth = window.innerWidth;
+	var WinHeight = window.innerHeight; 
+
+//for title bar 
+	var textWpper = document.getElementsByName("TitleContent")[0];
+
+	if(window.innerWidth <= 1794)
+	{
+		textWpper.textContent = "IMGUI Graph"
+	}
+	else
+	{
+		textWpper.textContent = "IMGUI Graph for unity"
+	}
+	
+	if(window.innerHeight <= 366)
+	{
+		HideContent( "ButtonAreaBottom" );
+		HideContent( "PostArea" );
+	}
+	else
+	{
+		ShowContent( "ButtonAreaBottom" );
+		ShowContent( "PostArea" );
+		
+		document.getElementsByName("ButtonAreaBottom")[0].style.display = "flex";
+	}
+}
+
+SizeCheck();
+</script>
+
+
+</body>
+</html>
+

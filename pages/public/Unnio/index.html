@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+
+<html>
+<head style = "margin-left:0px; margin-top:0px; margin-bottom:0px; margin-right:0px;">
+<title>Unnio</title>
+<link rel="stylesheet" href="../../../css_main.css">
+<link rel="stylesheet" href="css_unnio.css">
+<script src = "../../../contentModifyer.js"></script>
+</head>
+
+<body style="background-color: #323232; margin-left:0px; margin-right:0px; margin-top:0px; margin-bottom:0px;" onresize="SizeCheck()">
+
+<!--SECTION: backgroung content-->
+<img name = "background_img" src = "subimages/backgrounds/i_bg_-1.png" style = "position: fixed;width: 100vw; height: 100vh; top: 0px;"></img>
+<canvas name = "background_canvas" width="100vw" height="100vh" style = "position: fixed; top: 0px; margin-top:0px; margin-bottom:0px;"></canvas>
+
+<script>
+	var Arr_CanvasPointDataCount = 120
+	var Arr_CanvasPointData = new Array(Arr_CanvasPointDataCount)
+	let FirstFrameTimePoint;
+
+function SetRandomBackground()
+{
+	var MaxBackgrounds = 5
+	var Index = GetRandomIntInRange( 0, MaxBackgrounds )
+
+SetImage("background_img", "./subimages/backgrounds/i_bg_" + Index.toString() + ".png" )
+}
+
+function SetRandomCanvasBG()
+{
+	for(var i = 0; i < Arr_CanvasPointDataCount; i++) 
+	{
+		var temp = new Array(7);
+		var brightness = Math.random() *0.1;
+		var brightness_b = Math.random() *0.8;
+		var brightness_g = Math.random() *brightness_b;
+		
+		temp[0] = [Math.random(), Math.random()];
+		temp[1] = [Math.random(), Math.random()];
+		temp[2] = [Math.random(), Math.random()];
+		
+		var area = 0.2
+		temp[3] = [temp[0][0] + ((Math.random() *(area *2)) -area), temp[0][1] + ((Math.random() *(area *2)) -area)];
+		temp[4] = [temp[1][0] + ((Math.random() *(area *2)) -area), temp[1][1] + ((Math.random() *(area *2)) -area)];
+		temp[5] = [temp[2][0] + ((Math.random() *(area *2)) -area), temp[2][1] + ((Math.random() *(area *2)) -area)];
+		
+		temp[6] = [brightness,brightness + brightness_g,brightness + brightness_b,Math.random() *0.07];
+		
+		Arr_CanvasPointData[i] = temp;
+	}
+}
+
+function AnimateCanvasDataPoints(TimeStamp)
+{
+	requestAnimationFrame(AnimateCanvasDataPoints)
+	
+	var Time = 0;
+	
+	if(	FirstFrameTimePoint == undefined && TimeStamp != undefined)
+	{
+		FirstFrameTimePoint = TimeStamp;
+	}
+	
+	if(TimeStamp != undefined)
+	{
+		Time = TimeStamp - FirstFrameTimePoint;
+	}
+	
+	var CanvasElement = document.getElementsByName("background_canvas")[0];
+	CanvasElement.width = window.innerWidth;
+	CanvasElement.height = window.innerHeight;
+
+	var C = CanvasElement.getContext('2d');
+	C.clearRect( 0, 0, CanvasElement.width, CanvasElement.height )
+	
+	var lerpTime = Math.abs( Math.sin( Time /10000 ))
+
+	for(var i = 0; i < Arr_CanvasPointDataCount; i++) 
+	{
+		C.fillStyle = "rgba(" + Arr_CanvasPointData[i][6][0].toString() *255 + ", "+ Arr_CanvasPointData[i][6][1].toString() *255 +", "+ Arr_CanvasPointData[i][6][2].toString() *255 +", "+ Arr_CanvasPointData[i][6][3].toString() +")";
+		
+		C.beginPath();
+		
+		var Offset_BR = 3;
+		var Offset_TL = 1;
+		
+		var point_A_X = Lerp( lerpTime, (Arr_CanvasPointData[i][0][0] * (window.innerWidth *Offset_BR)) -(window.innerWidth *Offset_TL), (Arr_CanvasPointData[i][3][0] * (window.innerWidth *Offset_BR)) -(window.innerWidth *Offset_TL) );
+		var point_B_X = Lerp( lerpTime, (Arr_CanvasPointData[i][1][0] * (window.innerWidth *Offset_BR)) -(window.innerWidth *Offset_TL), (Arr_CanvasPointData[i][4][0] * (window.innerWidth *Offset_BR)) -(window.innerWidth *Offset_TL) );
+		var point_C_X = Lerp( lerpTime, (Arr_CanvasPointData[i][2][0] * (window.innerWidth *Offset_BR)) -(window.innerWidth *Offset_TL), (Arr_CanvasPointData[i][5][0] * (window.innerWidth *Offset_BR)) -(window.innerWidth *Offset_TL) );
+		
+		var point_A_Y = Lerp( lerpTime, (Arr_CanvasPointData[i][0][1] * (window.innerHeight *Offset_BR)) -(window.innerHeight *Offset_TL), (Arr_CanvasPointData[i][3][1] * (window.innerHeight *Offset_BR)) -(window.innerHeight *Offset_TL) );
+		var point_B_Y = Lerp( lerpTime, (Arr_CanvasPointData[i][1][1] * (window.innerHeight *Offset_BR)) -(window.innerHeight *Offset_TL), (Arr_CanvasPointData[i][4][1] * (window.innerHeight *Offset_BR)) -(window.innerHeight *Offset_TL) );
+		var point_C_Y = Lerp( lerpTime, (Arr_CanvasPointData[i][2][1] * (window.innerHeight *Offset_BR)) -(window.innerHeight *Offset_TL), (Arr_CanvasPointData[i][5][1] * (window.innerHeight *Offset_BR)) -(window.innerHeight *Offset_TL) );
+		
+		C.moveTo(point_A_X, point_A_Y);
+		C.lineTo(point_B_X, point_B_Y);
+		C.lineTo(point_C_X, point_C_Y);
+		C.lineTo(point_A_X, point_A_Y);
+		
+		C.fill();
+		C.closePath();
+	}
+}
+
+SetRandomCanvasBG();
+SetRandomBackground();
+
+AnimateCanvasDataPoints();
+</script>
+
+
+<!--SECTION: title content-->
+<div style="height: 70vh; width: 100vw; position: relative; top: 0">
+<h4 name = "TitleContent" style = "text-align: center; margin-top:30vh; margin-bottom:0vh;">Unnio for unity</h4>
+
+<div style = "display: flex; justify-content: center; align-items: center;">
+<button class = "box" style = "background: rgba(0, 150, 255, 1);" onclick='Download("https://github.com/bobbobson21/UnnioRelease/archive/refs/heads/main.zip", "Unnio")'><p class = "buttontext">download latest version</p></button>
+<button class = "box" style = "background: rgba(35, 134, 54, 1);" onclick='window.open("https://github.com/bobbobson21/UnnioRelease","_blank");'><p class = "buttontext">view source code</p></button>
+<button class = "box" style = "background: rgba(255, 120, 0, 1);" onclick='window.open("https://github.com/bobbobson21/UnnioRelease/blob/main/README.md","_blank")'><p class = "buttontext">view change log</p></button>
+</div>
+
+<div name = "ButtonAreaBottom" style = "display: flex; justify-content: center;align-items: center; margin-top: 10px">
+<button class = "box" style = "background: rgba(0, 150, 255, 0.25);" onclick='document.getElementById("goto_install").scrollIntoView({behavior: "smooth"});' style = "background-color: rgba(0, 0, 0, 0); border-width: 0px;"><p class = "buttontext">how to install ▼</p></button>
+<button class = "box" style = "background: rgba(0, 150, 255, 0.25);" onclick='document.getElementById("goto_postsMain").scrollIntoView({behavior: "smooth"});' style = "background-color: rgba(0, 0, 0, 0); border-width: 0px;"><p class = "buttontext">learn more about unnio ▼</p></button>
+</div>
+</div>
+
+<!--SECTION: post content-->
+<div name = "PostArea">
+<div class = "ContentBoxSmall-wapper" style = "margin-bottom: 40px;">
+<div class = "ContentBoxSmall" id = "goto_install">
+<h3 style = "font-weight: 1; margin-bottom: 20px;">How to install</h3>
+
+<h2 style = "font-weight: 1; margin-top: -8px;">First download the latest version.</h2>
+<h2 style = "font-weight: 1; margin-top: 30px;">Then find the unity project you want to add Unnio to.</h2>
+<h2 style = "font-weight: 1; margin-top: 30px; margin-right: 20px;">Then extract the archive to that projects package folder and restart the project if you still have it open and you may also want to revalidate all after you open it just to be on the safe side.</h2>
+
+</div>
+</div>
+
+<div class = "ContentBoxSmall-wapper" style = "margin-bottom: -20px;">
+<div class = "ContentBoxSmall" id = "goto_postsMain">
+<h3 style = "font-weight: 1; margin-bottom: 20px;">What is Unnio</h3>
+<table style="width:100%;">
+<tr>
+<th style="width:auto; vertical-align: top;">
+<img src = "./subimages/posts/Screenshot 2025-06-01 161223.png" style = "width: 95%; height: 95%; ">
+</img>
+
+</th>
+<th style="width:65%; vertical-align: top;">
+<h2 style = "font-weight: 1; margin-top: -8px;">Unnio is a tool developed for Unity to help developers, programmers, and artists plan out tasks through Unnio's Kanban board assets. Unnio boards are also capable of automating a lot of the board's processes through stack/column actions, which can change properties of a node/card, and node conditions can be used to move nodes around based on tests against your asset and code database.</h2>
+<h2 style = "font-weight: 1; margin-top: 30px;">This tool was developed by Kyle Edwards.</h2>
+</th>
+
+</tr>
+</table>
+</div>
+</div>
+
+<div class = "ContentBoxSmall-wapper" style = "margin-bottom: -20px;">
+<div class = "ContentBoxSmall">
+<h3 style = "font-weight: 1; margin-bottom: 20px;">Why you should use it</h3>
+<table style="width:100%;">
+<tr>
+
+<th style="width:65%; vertical-align: top;">
+<h2 style = "font-weight: 1; margin-top: -8px;">The main reason why it should be used is because of its automated control systems which can help speed up game development as you wont have to spend time manually adding colours to nodes or moving them around your self. but Unnio's other features, such as the issues system, can also of great aid for tracking progress and for understanding what needs to currently be done</h2>
+<h2 style = "font-weight: 1; margin-top: 30px;">Unnio boards also dont have to exsit within a unity project so you can also put them in a shared network folder for group work</h2>
+</th>
+
+<th style="width:auto; vertical-align: top;">
+<img src = "./subimages/posts/Screenshot 2025-06-01 161315.png" style = "width: 95%; height: 95%; "></img>
+</th>
+
+</tr>
+</table>
+</div>
+</div>
+
+<div class = "ContentBoxSmall-wapper" style = "margin-bottom: -20px;">
+<div class = "ContentBoxSmall">
+<h3 style = "font-weight: 1; margin-bottom: 20px;">Tutorialization</h3>
+<table style="width:100%;">
+<tr>
+
+<th style="width:auto; vertical-align: top;">
+<img src = "./subimages/posts/Screenshot 2025-06-01 161441.png" style = "width: 95%; height: 95%; "></img>
+</th>
+
+<th style="width:65%; vertical-align: top;">
+<h2 style = "font-weight: 1; margin-top: -8px;">Unnio can be very difficult to get used to for the first time with all its many features and bells and whistles and because of that there is a lot of tutorial help with most of it coming from the tutorial Index, its like a book of power points in unity, which dose a lot of the explaining.</h2>
+<h2 style = "font-weight: 1; margin-top: 30px;">There is also a tutorial that you can follow along with incase the tutorial index is also something you are struggling with.</h2>
+</th>
+
+</tr>
+</table>
+</div>
+</div>
+
+<div class = "ContentBoxSmall-wapper" style = "margin-bottom: -20px;">
+<div class = "ContentBoxSmall">
+<h3 style = "font-weight: 1; margin-bottom: 20px;">Unnio issues</h3>
+<table style="width:100%;">
+<tr>
+
+<th style="width:65%; vertical-align: top;">
+<h2 style = "font-weight: 1; margin-top: -8px;">Unnio issues is one of the many moving parts of Unnio and it is designed to track issues within your project. This can be also made to work automatically thought unit testing but you can also manually declare issues within code or with in the current scene, though issue components, should you wish to do so.</h2>
+<h2 style = "font-weight: 1; margin-top: 30px;">Unnio issues is also contained within a different package from the main one so if you don't want to you can just delete or if you only want it you can delete everything else.</h2>
+</th>
+
+<th style="width:auto; vertical-align: top;">
+<img src = "./subimages/posts/Screenshot 2025-06-01 161522.png" style = "width: 95%; height: 95%; "></img>
+</th>
+
+</tr>
+</table>
+</div>
+</div>
+
+<div class = "ContentBoxSmall-wapper" style = "margin-bottom: -20px;">
+<div class = "ContentBoxSmall">
+<h3 style = "font-weight: 1; margin-bottom: 20px;">Unnio templates</h3>
+<table style="width:100%;">
+<tr>
+
+<th style="width:auto; vertical-align: top;">
+<img src = "./subimages/posts/Screenshot 2025-06-01 161546.png" style = "width: 95%; height: 95%; "></img>
+</th>
+
+<th style="width:65%; vertical-align: top;">
+<h2 style = "font-weight: 1; margin-top: -8px;">The template viewer allows you to view a range of free templates that you can use to get started with. All you have to do is open the template viewer, wait a bit and then select the template you want and then you can just added it to your project by clicking the "add to project" button and after that it becomes an editable board in your project.</h2>
+<h2 style = "font-weight: 1; margin-top: 30px;">I am responsible for development of sixteen of the templates in the template viewer and there is at least two templates for every type of job using unity that I could think of.</h2>
+</th>
+
+</tr>
+</table>
+</div>
+</div>
+
+</div>
+
+<!--SECTION: tob box content-->
+<div style = "width: 100vw; position: fixed; top:7px; display: flex; justify-content: right; align-items: right;">
+<button name = "ScrollToTop_box" class = "box" style = "background: rgba(0, 150, 255, 0.25);" onclick='window.scrollTo({ top: 0, behavior: "smooth" });' style = "background-color: rgba(0, 0, 0, 0); border-width: 0px;"><p class = "buttontext" name = "ScrollToTop_text">back to top ▲</p></button>
+</div>
+
+<script>
+function AnimateScrollToTopBox()
+{
+	requestAnimationFrame( AnimateScrollToTopBox )
+	
+	var MaxAlphaBox = 0.25;
+	var MaxAlphaText = 1;
+	
+	var AnimationPoint = Math.min( window.scrollY / window.innerHeight, 1)
+	
+	var BoxElement = document.getElementsByName("ScrollToTop_box")[0];
+	var TextElement = document.getElementsByName("ScrollToTop_text")[0];
+	
+	
+	if(AnimationPoint == 0)
+	{
+		HideContent("ScrollToTop_box")
+	}
+	else
+	{
+		ShowContent("ScrollToTop_box")
+	}
+	
+	BoxElement.style.background = "rgba(0, 150, 255, "+ Lerp( AnimationPoint, 0, MaxAlphaBox ).toString() +")";
+	TextElement.style.color = "rgba(255, 255, 255, "+ Lerp( AnimationPoint, 0, MaxAlphaText ).toString() +")";
+}
+
+AnimateScrollToTopBox()
+</script>
+
+<script>
+function SizeCheck()
+{
+	var WinWidth = window.innerWidth;
+	var WinHeight = window.innerHeight; 
+
+//for title bar 
+	var textWpper = document.getElementsByName("TitleContent")[0];
+
+	if(window.innerWidth <= 1200)
+	{
+		textWpper.textContent = "Unnio"
+	}
+	else
+	{
+		textWpper.textContent = "Unnio for unity"
+	}
+	
+	if(window.innerHeight <= 366)
+	{
+		HideContent( "ButtonAreaBottom" );
+		HideContent( "PostArea" );
+	}
+	else
+	{
+		ShowContent( "ButtonAreaBottom" );
+		ShowContent( "PostArea" );
+		
+		document.getElementsByName("ButtonAreaBottom")[0].style.display = "flex";
+	}
+}
+
+SizeCheck();
+</script>
+
+
+</body>
+</html>
+

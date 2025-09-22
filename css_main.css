@@ -1,0 +1,230 @@
+
+h1
+{
+	color: white;
+	font-family:verdana;
+	font-size:24px;
+	text-align: left;
+	margin-left: 5px;
+	padding-bottom: 2px;
+}
+
+h2
+{
+	color: white;
+	font-family:verdana;
+	font-size:26px;
+	text-align: left;
+	margin-left: 5px;
+	padding-bottom: 2px;
+}
+
+h3
+{
+	color: white;
+	font-family:verdana;
+	font-size:32px;
+	text-align: left;
+	margin-left: 5px;
+	padding-bottom: 2px;
+}
+
+h4
+{
+	color: white;
+	font-weight: normal;
+	font-family:verdana;
+	font-size:160px;
+	text-align: left;
+	padding-bottom: 2px;
+}
+
+p
+{
+	color: white;
+	font-family:verdana;
+	font-size:16px;
+	font-weight: normal;
+	padding-bottom: 6px;
+	margin-top: -2px;
+	text-align: left;
+}
+
+p.titlebartop
+{
+	color: white;
+	font-family:verdana;
+	font-size:16px;
+	font-weight: normal;
+	padding-top: 25px;
+	text-align: left;
+	cursor: pointer;
+}
+
+p.titlebartop_small
+{
+	color: white;
+	font-family:verdana;
+	font-size:16px;
+	font-weight: normal;
+	padding-top: 20px;
+	text-align: left;
+	cursor: pointer;
+}
+
+p.margin
+{
+	color: white;
+	font-family:verdana;
+	font-size:16px;
+	font-weight: normal;
+	margin-left: 5px;
+	padding-bottom: 6px;
+	text-align: left;
+}
+
+p.tags
+{
+	color: #d9d9d9;
+	font-family:verdana;
+	font-size:16px;
+	font-weight: bold;
+	margin-left: 5px;
+	padding-bottom: 2px;
+	text-align: left;
+}
+
+p.dropdown
+{
+	color: #aaaaaa;
+	font-style: italic;
+	margin-bottom: -2px;
+	margin-top: -2px;
+	cursor: pointer;
+}
+
+a
+{
+	color: #aaaaaa;
+}
+
+button
+{
+	background-color: rgba(0, 0, 0, 0);
+	border-width: 0px;  
+	position: relative;
+}
+
+.VideoWapper {
+	position: relative;
+	display: block;
+	width: 50%;
+	height: 0;
+	padding: 0% 0% 25%;
+	overflow: hidden;
+	margin-left: 5px;
+	margin-bottom: 5px;
+}
+
+.VideoWapper iframe {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	border: 0px;
+}
+
+.VideoWapper-Big {
+	position: relative;
+	display: block;
+	width: 100%;
+	height: 0;
+	padding: 0% 0% 50% 0%;
+	overflow: hidden;
+	margin-left: 5px;
+	margin-bottom: 5px;
+}
+.VideoWapper-Big iframe {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	border: 0px;
+	margin-left: -50%;
+}
+
+.ContentBox
+{
+	background-color: rgba(0, 0, 0, 0.7); 
+	width: 100vw; 
+	position: relative; 
+	margin-left:0px;
+	margin-right:0px;	
+	margin-top:6px; 
+	margin-bottom:6px;
+	padding-bottom: 6px;
+}
+
+.ContentBoxSmall
+{
+	background-color: rgba(20, 20, 20, 0.5); 
+	width: 98%; 
+	position: relative; 
+	margin-left: 1%;
+	margin-right:0px;	
+	margin-top:0px; 
+	margin-bottom:0px;
+	padding-bottom: 6px;
+}
+
+.ContentBoxSmall-year
+{
+	background-color: rgba(60, 0, 60, 0.7); 
+	width: 98%; 
+	position: relative; 
+	
+	margin-left: 1%;
+	margin-right:0px;	
+	margin-top:6px; 
+	margin-bottom:6px;
+	
+	padding-bottom: 1px;
+	padding-top: 1px;
+}
+
+.ContentBoxSmall-wapper
+{ 
+	width: 100vw; 
+	position: relative; 
+	margin-left:0px;
+	margin-right:0px;	
+	margin-top:6px; 
+	margin-bottom:6px;
+}
+
+.tagbox
+{
+	width: 64px; 
+	height: 16px;
+	float: right;
+	margin-right: 10px;
+}
+
+.tagbox-long
+{
+	width: 128px; 
+	height: 16px;
+	float: right;
+	margin-right: 10px;
+}
+
+.ButtonDivider
+{
+	background-color: rgba(150, 150, 150, 1); 
+	width: 2px; 
+	height: 75%;
+	top: 11%;
+	position: relative; 
+	margin-left:5px;
+	margin-right:5px;	
+	margin-top: 100%; 
+	margin-bottom:0px;
+}

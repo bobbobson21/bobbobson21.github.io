@@ -1,0 +1,1198 @@
+<!DOCTYPE html>
+ 
+<html>
+<head style = "margin-left:0px; margin-top:0px; margin-bottom:0px; margin-right:0px;">
+<title>Kyles portfolio</title>
+<link rel="stylesheet" href="css_main.css">
+<script src = "contentModifyer.js"></script>
+</head>
+
+<body style="background-color: #323232; margin-left:0px; margin-right:0px; margin-top:0px; margin-bottom:0px;" onresize="SizeCheck()">
+
+<!--SECTION: background-->
+
+<img name = "background_img" src = "./images/backgrounds/i_bg_2.png" style = "position: fixed;width: 100vw; height: 100vh; top: 0px;"></img>
+<script>
+function SetRandomBackground()
+{
+	var MaxBackgrounds = 4
+	var Index = GetRandomIntInRange( 0, MaxBackgrounds )
+
+SetImage("background_img", "./images/backgrounds/i_bg_" + Index.toString() + ".png" )
+}
+
+SetRandomBackground()
+</script>
+
+<!--SECTION: title content-->
+
+<div class="TitleBar" style="background-color: rgba(0, 0, 0, 0.7);  height: 50px; width: 100vw; position: relative; top: 0px; margin-top:0px; margin-bottom:0px;">
+<table style="width:100%; margin-top:0px; margin-bottom:0px; position: relative; top: -33px">
+<tr>
+<th name = "TitleBar_SizeCheck_L" style="width:560px;"><h3>The portfolio of Kyle Edwards</h3></th>
+<th name = "TitleBar_SizeCheck_R">
+
+<div style = "height: 40px; width: 12px; float: right;"></div>
+
+<button onclick='HideContentAll( "user" ); ShowContent( "user-hidden" )' style = "background-color: rgba(0, 0, 0, 0); border-width: 0px;  position: relative; float: right;"><p class = "titlebartop"> show about me</p></button>
+
+<div style = "float: right; height: 48px;"><div class = "ButtonDivider"></div></div>
+<button onclick='HideContentAll( "uni" ); ShowContent( "uni+indie" ); ShowContent( "year" ); HideYearsPrior( 2023 );' style = "background-color: rgba(0, 0, 0, 0); border-width: 0px;  position: relative; float: right;"><p class = "titlebartop"> show uni work</p></button>
+
+<div style = "float: right; height: 48px;"><div class = "ButtonDivider"></div></div>
+<button onclick='HideContentAll( "collage" ); ShowContent( "year" ); HideYearsPost( 2023 );  HideYearsPrior( 2020 );' style = "background-color: rgba(0, 0, 0, 0); border-width: 0px;  position: relative; float: right;"><p class = "titlebartop"> show collage work</p></button>
+
+<div style = "float: right; height: 48px;"><div class = "ButtonDivider"></div></div>
+<button onclick='HideContentAll( "indie" ); ShowContent( "uni+indie" ); ShowContent( "year" ); HideYear( 2021 ); HideYear( 2020 );' style = "background-color: rgba(0, 0, 0, 0); border-width: 0px;  position: relative; float: right;"><p class = "titlebartop"> show independent work</p></button>
+
+<div style = "float: right; height: 48px;"><div class = "ButtonDivider"></div></div>
+<button onclick='HideContentAll( "job" ); ShowContent( "year" ); HideYearsPrior( 2025 );' style = "background-color: rgba(0, 0, 0, 0); border-width: 0px;  position: relative; float: right;"><p class = "titlebartop"> show job work</p></button>
+
+<div style = "float: right; height: 48px;"><div class = "ButtonDivider"></div></div>
+<button onclick='ShowContentAll( "user-hidden" ); ShowContent( "year" );' style = "background-color: rgba(0, 0, 0, 0); border-width: 0px;  position: relative; float: right;"><p class = "titlebartop"> show all (but hidden)</p></button>
+
+
+</th>
+</tr>
+</table>
+
+<div name = "TitleBar_SizeCheck_R_small" style="position: absolute; width: 100%; height: 100%; top: -4px;">
+
+<script>var TitleBarSwitchIndex = 0; var MaxTitleBarIndexes = 5;</script>
+
+<button onclick='TitleBarSwitchIndex = TitleBarSwitchIndex +1; if(TitleBarSwitchIndex > MaxTitleBarIndexes) {TitleBarSwitchIndex = 0}; SwitchContent( "TitleBarSmallTabs", TitleBarSwitchIndex, 0, MaxTitleBarIndexes );' style = "background-color: rgba(0, 0, 0, 0); border-width: 0px;  position: relative; float: right;"><p class = "titlebartop_small">&gt;&gt;</p></button>
+
+<button name = "TitleBarSmallTabs_5" onclick='HideContentAll( "user" ); ShowContent( "user-hidden" )' style = "background-color: rgba(0, 0, 0, 0); border-width: 0px;  position: relative; float: right;"><p class = "titlebartop_small"> show about me</p></button>
+
+<button name = "TitleBarSmallTabs_4" onclick='HideContentAll( "uni" ); ShowContent( "uni+indie" ); ShowContent( "year" ); HideYearsPrior( 2023 );' style = "background-color: rgba(0, 0, 0, 0); border-width: 0px;  position: relative; float: right;"><p class = "titlebartop_small"> show uni work</p></button>
+
+<button name = "TitleBarSmallTabs_3" onclick='HideContentAll( "collage" ); ShowContent( "year" ); HideYearsPost( 2023 );  HideYearsPrior( 2020 );' style = "background-color: rgba(0, 0, 0, 0); border-width: 0px;  position: relative; float: right;"><p class = "titlebartop_small"> show collage work</p></button>
+
+<button name = "TitleBarSmallTabs_2" onclick='HideContentAll( "indie" ); ShowContent( "uni+indie" ); ShowContent( "year" ); HideYear( 2021 ); HideYear( 2020 );' style = "background-color: rgba(0, 0, 0, 0); border-width: 0px;  position: relative; float: right;"><p class = "titlebartop_small"> show independent work</p></button>
+
+<button name = "TitleBarSmallTabs_1" onclick='HideContentAll( "job" ); ShowContent( "year" ); HideYearsPrior( 2025 );' style = "background-color: rgba(0, 0, 0, 0); border-width: 0px;  position: relative; float: right;"><p class = "titlebartop_small"> show job work</p></button>
+
+<button name = "TitleBarSmallTabs_0" onclick='ShowContentAll( "user-hidden" ); ShowContent( "year" );' style = "background-color: rgba(0, 0, 0, 0); border-width: 0px;  position: relative; float: right;"><p class = "titlebartop_small"> show all (but hidden)</p></button>
+
+<button onclick='TitleBarSwitchIndex = TitleBarSwitchIndex -1; if(TitleBarSwitchIndex <= -1) {TitleBarSwitchIndex = MaxTitleBarIndexes}; SwitchContent( "TitleBarSmallTabs", TitleBarSwitchIndex, 0, MaxTitleBarIndexes );' style = "background-color: rgba(0, 0, 0, 0); border-width: 0px;  position: relative; float: right;"><p class = "titlebartop_small">&lt;&lt;</p></button>
+
+<script>SwitchContent( "TitleBarSmallTabs", 0, 0, MaxTitleBarIndexes );</script>
+</div>
+</div>
+
+<!--SECTION: post content-->
+
+<div class = "ContentBoxSmall-wapper" name = "user">
+<div class = "ContentBoxSmall">
+
+<table style="width:100%; margin-top:0px; margin-bottom:-20px;">
+<tr>
+<th style="width:50%;"><h1>who am I</h1></th>
+<th style="width:50%"><img class="tagbox" src = "./images/i_taguser.png"></img></th>
+</tr>
+</table>
+
+<table style="width:100%;">
+<tr>
+<th style="width:15%; vertical-align: top;">
+<img src = "./images/i_profilephoto.png" style = "width: 60%; height: 60%;">
+
+<button onclick='ShowContent( "ImageView_Big" ); SetImage( "ImageView_Big_Img", "./images/i_profilephoto.png" )' style="background-color: rgba(0, 0, 0, 0); border-width: 0px; position: absolute; margin-top: 5px; margin-left: -30px; height:20px;">
+<img src = "./images/i_zoom.png" style = "min-height: 100%; min-width: 100%; width: 100%; height: 100%; cursor: pointer;"></img> <!--AccessBigPhotoView-->
+</button>
+
+</img>
+<div>
+<a href = "https://github.com/bobbobson21" target="_blank"><img src = "./images/socials/github.png" alt = "GitHub" style = "width: 10%; height: 10%; float: center;"></img></a>
+<a href = "https://www.linkedin.com/in/kyle-edwards-729475256/" target="_blank"><img src = "./images/socials/linkedin.png" alt = "LinkedIn" style = "width: 10%; height: 10%; float: center;"></img></a>
+<a href = "https://digitalacademy.staffs.ac.uk/forum/index.php?/profile/7997-kyle-edwards/" target="_blank"><img src = "./images/socials/uni.png" alt = "Staffordshire university" style = "width: 10%; height: 10%; float: center;"></img></a>
+<a href = "https://www.youtube.com/@ilikecreeperswhy1303" target="_blank"><img src = "./images/socials/youtube.png" alt = "YouTube" style = "width: 10%; height: 10%; float: center;"></img></a>
+</div>
+</th>
+
+<th style="width:85%; vertical-align: top;">
+<p>My name is Kyle Edwards and I am currently a student of Staffordshire university in there games computer programming course and during my time in this course so far I have made serval games. Some of the games used unreal and some also used unity and one was made in the windows command line. I have also done work in computer science which taught me how AIs move though an environment and what practices should be used to keep code fast.</p>
+<p>I also went to stoke on tent collage where I also made plenty of games as well. I also excelled in the work I got here so much that I got a lot of free time which I channelled into a lot of side projects. Some of the side projects became very important to me and to others but some I were not able to finish despite butting in all the work because of a unforeseen indecent.</p>
+<p>As for why I chose to study the art of making games though code it mostly goes back to when I was a kid playing on my stepdads computer and on this computer I was introduced to Gmod and minecraft and though Gmod I discovered mods and then I wanted to make my own for both games and after making many of them I wanted to then figure out how games were made so I went to stoke college and rest was history.</p>
+</th>
+</tr>
+</table>
+
+</div>
+</div>
+
+<div class = "ContentBoxSmall-wapper" name = "user-hidden">
+<div class = "ContentBoxSmall">
+
+<table style="width:100%; margin-top:0px; margin-bottom:-20px;">
+<tr>
+<th style="width:50%;"><h1>the kind of person I am</h1></th>
+<th style="width:50%"><img class="tagbox" src = "./images/i_taguser.png"></img><img class="tagbox" src = "./images/i_taghidden.png"></img></th>
+</tr>
+</table>
+
+<table style="width:100%;">
+<tr>
+<th style="width:90%; vertical-align: top;">
+<p class = "margin">I would like to think of myself as a kind, caring and compassionate person who also likes a laugh every, now and again and I would also like to think I am good in teams. I also really like, computers and making stuff for them whether that's making my own games, mods, <a href = "https://steamcommunity.com/id/ilikecreepers3334/myworkshopfiles/?p=1" target="_blank">steam mods</a> or making my own coding language and I also like chicken nuggets and seals..</p>
+<p class = "margin">I have also been descried by others as smart, intuitive but questionative and generally an all around, good and slightly clumsy but funny person so I reckon if you are looking for someone to lift spirts I could be perfect for you..</p>
+</th>
+
+<th style="width:10%; vertical-align: top;">
+
+<img src = "./images/i_profilephoto_b.png" style = "width: 90%; height: 90%; margin-left:5%;">
+<button onclick='ShowContent( "ImageView_Big" ); SetImage( "ImageView_Big_Img", "./images/i_profilephoto_b.png" )' style="background-color: rgba(0, 0, 0, 0); border-width: 0px; position: absolute; margin-top: 5px; margin-left: -30px; height:20px;">
+<img src = "./images/i_zoom.png" style = "min-height: 100%; min-width: 100%; width: 100%; height: 100%; cursor: pointer;"></img> <!--AccessBigPhotoView-->
+</button>
+</img>
+
+</th>
+</tr>
+</table>
+</div>
+</div>
+
+<div class = "ContentBoxSmall-wapper" name = "user-hidden">
+<div class = "ContentBoxSmall">
+
+<table style="width:100%; margin-top:0px; margin-bottom:-20px;">
+<tr>
+<th style="width:50%;"><h1>what I hope for in life</h1></th>
+<th style="width:50%;"><img class="tagbox" src = "./images/i_taguser.png"></img><img class="tagbox" src = "./images/i_taghidden.png"></img></th>
+</tr>
+</table>
+
+<p class = "margin">I would like to have a decent job that preferably doesn't do crunch (but I don't really mind that much) and I don't really care about the money I get for the job as long as it's enough to, keep me from being homeless and allow me to buy some really good food once in a blue moon.</p>
+<p class = "margin">I would also like to possibly expand my circle of friends and connections to more people within games so that I can learn more about the industry so that I can better my self and help others around me.</p>
+
+</div>
+</div>
+
+<div class = "ContentBoxSmall-wapper" name = "user-hidden">
+<div class = "ContentBoxSmall">
+
+<table style="width:100%; margin-top:0px; margin-bottom:-20px;">
+<tr>
+<th style="width:50%;"><h1>what I specialize in</h1></th>
+<th style="width:50%;"><img class="tagbox" src = "./images/i_taguser.png"></img><img class="tagbox" src = "./images/i_taghidden.png"></img></th>
+</tr>
+</table>
+
+<p class = "margin">In terms of what I think I specialize in I would like to say I specialize in a lot of regions of game development and programming with me doing a good job at pretty much everything from materials to level development (should it come in handy) but I would positively say that my strongest areas are:</p>
+<p>
+• AI development
+<br>• General mechanics (power ups in Mario and content like that)
+</p>
+<p class = "margin">I would say these are my strong points because I have done so much with AI at my time in college and I have also made so may types of AI from ones that have the best finding system to others which you can have an actually conversation with. I am also very good at designing simple mechanics and getting them working to perfection as I have done this before for a lot of my later Gmod addons.</p>
+
+</div>
+</div>
+
+<div class = "ContentBoxSmall-wapper" name = "user-hidden">
+<div class = "ContentBoxSmall">
+<table style="width:100%; margin-top:0px; margin-bottom:-20px;">
+<tr>
+<th style="width:50%;"><h1>what tools I have use to make games or programs</h1></th>
+<th style="width:50%;"><img class="tagbox" src = "./images/i_taguser.png"></img><img class="tagbox" src = "./images/i_taghidden.png"></img></th>
+</tr>
+</table>
+
+<p class = "margin">
+• Unreal
+<br>• Love 2d
+<br>• Lua
+<br>• C++
+<br>• 3ds Max
+<br>• premier pro
+<br>• OBS studios
+</p>
+
+</div>
+</div>
+
+<div class = "ContentBoxSmall-wapper" name = "user-hidden">
+<div class = "ContentBoxSmall">
+
+<table style="width:100%; margin-top:0px; margin-bottom:-20px;">
+<tr>
+<th style="width:50%;"><h1>my main qualifications</h1></th>
+<th style="width:50%;"><img class="tagbox" src = "./images/i_taguser.png"></img><img class="tagbox" src = "./images/i_taghidden.png"></img></th>
+</tr>
+</table>
+
+<p class = "margin">
+•C++ bespoke platform development for consoles, University of Staffordshire, Stoke-On-Trent
+<br>•Mechanic prototyping, University of Staffordshire, Stoke-On-Trent
+<br>•C# scripting for game engines, University of Staffordshire, Stoke-On-Trent
+<br>•Computational methods, University of Staffordshire, Stoke-On-Trent
+<br>•C++ programming fundamentals, University of Staffordshire, Stoke-On-Trent
+<br>•Games programing level 1(UAL Level 3 Extended And Non-Extended Diploma In Creative Media Production and Technology), Stoke-On-Trent college, Stoke-On-Trent 
+<br>•Games and media level 2(UAL Level 2 Diploma In Creative Media Production and Technology In Games Development), Stoke-On-Trent college, Stoke-On-Trent 
+<br>•Games and media level 1(UAL Level 2 Diploma In Creative Media Production and Technology In Games Development), Stoke-On-Trent college, Stoke-On-Trent 
+<br>•Duke of Edinburgh silver, Abbey Hill FE, Stoke-On-Trent 
+<br>•Duke of Edinburgh bronze, Abbey Hill FE, Stoke-On-Trent 
+</p>
+
+
+</div>
+</div>
+
+<div class = "ContentBoxSmall-wapper" name = "user">
+<div class = "ContentBoxSmall">
+
+<table style="width:100%; margin-top:0px; margin-bottom:-20px;">
+<tr>
+<th style="width:50%;"><h1>how to contact me</h1></th>
+<th style="width:50%;"><img class="tagbox" src = "./images/i_taguser.png"></img></th>
+</tr>
+</table>
+
+<p class = "margin">email: dsbkhvds221@outlook.com, kylexxzyz@gmail.com <br>telephone: 07885385848</p>
+
+</div>
+</div>
+
+<div class = "ContentBoxSmall-wapper" name = "user">
+<div class = "ContentBoxSmall">
+
+<table style="width:100%; margin-top:0px; margin-bottom:-20px;">
+<tr>
+<th style="width:50%;"><h1>employment links</h1></th>
+<th style="width:50%;"><img class="tagbox" src = "./images/i_taguser.png"></img></th>
+</tr>
+</table>
+
+<p class = "margin">
+•<a href = "https://1drv.ms/w/c/cbefb7f60b561fa3/EaMfVgv2t-8ggMv2AwAAAAABG_qGvLsjZo_r02PTSnoomA?e=DGoWas" target="_blank">My CV</a>
+<br>•<a href = "https://1drv.ms/w/c/cbefb7f60b561fa3/EaMfVgv2t-8ggMv3AwAAAAABvISYynvjg88-820WJiZIjw?e=5sxJQy" target="_blank">My Cover letter</a>
+</p>
+
+</div>
+</div>
+
+<!--2025-->
+<div class = "ContentBoxSmall-wapper" name = "year" id = "2025">
+<div class="ContentBoxSmall-year">
+<h2 style="width:100%;">2025</h2>
+</div>
+</div>
+
+<div class = "ContentBoxSmall-wapper" name = "indie">
+<div class = "ContentBoxSmall">
+<table style="width:100%; margin-top:0px; margin-bottom:-20px;">
+<tr>
+<th style="width:50%;"><h1>IMGUI Graph</h1></th>
+<th style="width:50%"><img class="tagbox-long" src = "./images/i_tagindie.png"></img></th>
+</tr>
+</table>
+<table style="width:100%;">
+<tr>
+<th style="width:auto; vertical-align: top;">
+<img src = "./images/postsimg/Screenshot 2025-08-18 213821.png" style = "width: 95%; height: 95%; ">
+<button onclick='ShowContent( "ImageView_Big" ); SetImage( "ImageView_Big_Img", "./images/postsimg/Screenshot 2025-08-18 213821.png" )' style="background-color: rgba(0, 0, 0, 0); border-width: 0px; position: absolute; margin-top: 5px; margin-left: -30px; height:20px;">
+<img src = "./images/i_zoom.png" style = "min-height: 100%; min-width: 100%; width: 100%; height: 100%; cursor: pointer; cursor: pointer;"></img> <!--AccessBigPhotoView-->
+</button>
+</img>
+
+<button onclick='ToggleContent( "img_post1755723690198" ); ToggleText( "img_post1755723690198_button", "show more images ▲", "show more images ▼" );'><p name = "img_post1755723690198_button" class = "dropdown">show more images ▲</p></button>
+<div name = "img_post1755723690198"> 
+
+<img src = "./images/postsimg/Screenshot 2025-08-15 125108.png" style = "width: 95%; height: 95%; ">
+<button onclick='ShowContent( "ImageView_Big" ); SetImage( "ImageView_Big_Img", "./images/postsimg/Screenshot 2025-08-15 125108.png" )' style="background-color: rgba(0, 0, 0, 0); border-width: 0px; position: absolute; margin-top: 5px; margin-left: -30px; height:20px;">
+<img src = "./images/i_zoom.png" style = "min-height: 100%; min-width: 100%; width: 100%; height: 100%; cursor: pointer; cursor: pointer;"></img> <!--AccessBigPhotoView-->
+</button>
+</img>
+
+</div>
+<script> HideContent( "img_post1755723690198" ); </script>
+</th>
+<th style="width:80%; vertical-align: top;">
+<p>IMGUI Graph is a tool I designed to make it easier to make graphs in unity, It accomplishes this by being more user friendly to programmers than the built in unity graph tools, and it is also much easier to deal with since you do not have to create classes for everything only for the node at the minimum and possibly two more for adding nodes and for executing actions on them and it comes with built in support for linking nodes together, changing the level of zoom, dragging content, grid backgrounds and more.</p>
+<p>The IMGUI graph also supports everything Unity's graph utilities support, except that none of it uses Unity experimentals, which is beneficial because Unity experimentals are subject to change. However, it also comes with features that Unity graph utilities do not.</p>
+<p>The link to the IMGUI graph web page can be found <a href = "https://bobbobson21.github.io/pages/public/IMGUIGraph/" target="_blank">here</a>, and from there, you can access the GitHub repository or the Unity Store page for the product. </p>
+</th>
+</tr>
+</table>
+<p class = "tags">skills developed: c#, unity usage, unity IMGUI, creating popup windows in unity, asset store publishing</p>
+
+</div>
+</div>
+
+
+<div class = "ContentBoxSmall-wapper" name = "job">
+<div class = "ContentBoxSmall">
+<table style="width:100%; margin-top:0px; margin-bottom:-20px;">
+<tr>
+<th style="width:50%;"><h1>oatcake studios: hive defenders</h1></th>
+<th style="width:50%"><img class="tagbox" src = "./images/i_tagjob.png"></img></th>
+</tr>
+</table>
+<table style="width:100%;">
+<tr>
+<th style="width:80%; vertical-align: top;">
+<p class = "margin">During my summer break time at oatcake studios most of my job consisted of doing UI work for the game hive defenders, which is what I was hired for. The UI work mostly consisted of adding controller support to all the UIs made prior to my arrival and making some UI materials but the radial menu, credits and settings menu are my creations which I designed to look similar to the rest of the UIs so it fits in with the theme although in my opinion the theme could have been better.</p>
+<p class = "margin">Apart from working on the UI however I also worked on a handful of systems for the AI and the player in hive defenders, the AIs pathfinding was one of the main AI things I worked on and this required a custom made system for navigating across hexagonal shapes in a way that's similar to moving pieces in a board game across a hexagonal board and they also wanted me to add inaccuracies to the paths generated as well, all of which I did accomplish. For the player I added a selection system which would allow them to control some of the AIs and move them around at will. I also made a repair system that would allow the player collect parts dropped from towers to repair towers. I also added the ability for the player to collect nectar.</p>
+<p class = "margin">A lot of the work mentioned here however is not in the game today as the bosses wanted to change the games genera resulting in the selection system, and repair/parts system being scraped and the AI pathfinding improvements were also scraped as the AI person wanted to remake it by himself so that theirs a smooth curve between changing tiles but I still learned a lot from this experience.</p>
+</th>
+<th style="width:auto; vertical-align: top;">
+<img src = "./images/postsimg/Screenshot 2025-07-16 134847.png" style = "width: 95%; height: 95%; ">
+<button onclick='ShowContent( "ImageView_Big" ); SetImage( "ImageView_Big_Img", "./images/postsimg/Screenshot 2025-07-16 134847.png" )' style="background-color: rgba(0, 0, 0, 0); border-width: 0px; position: absolute; margin-top: 5px; margin-left: -30px; height:20px;">
+<img src = "./images/i_zoom.png" style = "min-height: 100%; min-width: 100%; width: 100%; height: 100%; cursor: pointer; cursor: pointer;"></img> <!--AccessBigPhotoView-->
+</button>
+</img>
+
+<img src = "./images/postsimg/Screenshot 2025-07-16 134820.png" style = "width: 95%; height: 95%; ">
+<button onclick='ShowContent( "ImageView_Big" ); SetImage( "ImageView_Big_Img", "./images/postsimg/Screenshot 2025-07-16 134820.png" )' style="background-color: rgba(0, 0, 0, 0); border-width: 0px; position: absolute; margin-top: 5px; margin-left: -30px; height:20px;">
+<img src = "./images/i_zoom.png" style = "min-height: 100%; min-width: 100%; width: 100%; height: 100%; cursor: pointer; cursor: pointer;"></img> <!--AccessBigPhotoView-->
+</button>
+</img>
+
+<button onclick='ToggleContent( "img_post1752671769811" ); ToggleText( "img_post1752671769811_button", "show more images ▲", "show more images ▼" );'><p name = "img_post1752671769811_button" class = "dropdown">show more images ▲</p></button>
+<div name = "img_post1752671769811"> 
+
+<img src = "./images/postsimg/Screenshot 2025-07-16 094513.png" style = "width: 95%; height: 95%; ">
+<button onclick='ShowContent( "ImageView_Big" ); SetImage( "ImageView_Big_Img", "./images/postsimg/Screenshot 2025-07-16 094513.png" )' style="background-color: rgba(0, 0, 0, 0); border-width: 0px; position: absolute; margin-top: 5px; margin-left: -30px; height:20px;">
+<img src = "./images/i_zoom.png" style = "min-height: 100%; min-width: 100%; width: 100%; height: 100%; cursor: pointer; cursor: pointer;"></img> <!--AccessBigPhotoView-->
+</button>
+</img>
+
+<img src = "./images/postsimg/Screenshot 2025-07-16 134902.png" style = "width: 95%; height: 95%; ">
+<button onclick='ShowContent( "ImageView_Big" ); SetImage( "ImageView_Big_Img", "./images/postsimg/Screenshot 2025-07-16 134902.png" )' style="background-color: rgba(0, 0, 0, 0); border-width: 0px; position: absolute; margin-top: 5px; margin-left: -30px; height:20px;">
+<img src = "./images/i_zoom.png" style = "min-height: 100%; min-width: 100%; width: 100%; height: 100%; cursor: pointer; cursor: pointer;"></img> <!--AccessBigPhotoView-->
+</button>
+</img>
+
+<img src = "./images/postsimg/Screenshot 2025-07-16 111651.png" style = "width: 95%; height: 95%; ">
+<button onclick='ShowContent( "ImageView_Big" ); SetImage( "ImageView_Big_Img", "./images/postsimg/Screenshot 2025-07-16 111651.png" )' style="background-color: rgba(0, 0, 0, 0); border-width: 0px; position: absolute; margin-top: 5px; margin-left: -30px; height:20px;">
+<img src = "./images/i_zoom.png" style = "min-height: 100%; min-width: 100%; width: 100%; height: 100%; cursor: pointer; cursor: pointer;"></img> <!--AccessBigPhotoView-->
+</button>
+</img>
+
+<img src = "./images/postsimg/Screenshot 2025-07-16 133616.png" style = "width: 95%; height: 95%; ">
+<button onclick='ShowContent( "ImageView_Big" ); SetImage( "ImageView_Big_Img", "./images/postsimg/Screenshot 2025-07-16 133616.png" )' style="background-color: rgba(0, 0, 0, 0); border-width: 0px; position: absolute; margin-top: 5px; margin-left: -30px; height:20px;">
+<img src = "./images/i_zoom.png" style = "min-height: 100%; min-width: 100%; width: 100%; height: 100%; cursor: pointer; cursor: pointer;"></img> <!--AccessBigPhotoView-->
+</button>
+</img>
+
+</div>
+<script> HideContent( "img_post1752671769811" ); </script>
+</th>
+</tr>
+</table>
+
+<div></div>
+<button onclick='ToggleContent( "vid_B_post1752671769811" ); ToggleText( "vid_B_post1752671769811_button", "show game example video ▲", "show game example video ▼" );'><p name = "vid_B_post1752671769811_button" class = "dropdown"> show game example video ▲</p></button>
+<div name = "vid_B_post1752671769811" class = "VideoWapper"><iframe src="https://www.youtube.com/embed/4GkkWlg2DZI?si=EacgFmMOme_bwK3v" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+<script> HideContent( "vid_B_post1752671769811" ); </script>
+
+<p class = "tags">skills developed: UI animation, UI design, pathfinding with hexagons, Material creation, Dynamic materials</p>
+
+</div>
+</div>
+
+<div class = "ContentBoxSmall-wapper" name = "uni+indie">
+<div class = "ContentBoxSmall">
+<table style="width:100%; margin-top:0px; margin-bottom:-20px;">
+<tr>
+<th style="width:50%;"><h1>Unnio public release</h1></th>
+<th style="width:50%"><img class="tagbox-long" src = "./images/i_taguni.png"></img><img class="tagbox-long" src = "./images/i_tagindie.png"></img></th>
+</tr>
+</table>
+<table style="width:100%;">
+<tr>
+<th style="width:auto; vertical-align: top;">
+<img src = "./pages/public/Unnio/subimages/posts/Screenshot 2025-06-01 161223.png" style = "width: 95%; height: 95%; ">
+<button onclick='ShowContent( "ImageView_Big" ); SetImage( "ImageView_Big_Img", "./pages/public/Unnio/subimages/posts/Screenshot 2025-06-01 161223.png" )' style="background-color: rgba(0, 0, 0, 0); border-width: 0px; position: absolute; margin-top: 5px; margin-left: -30px; height:20px;">
+<img src = "./images/i_zoom.png" style = "min-height: 100%; min-width: 100%; width: 100%; height: 100%; cursor: pointer; cursor: pointer;"></img> <!--AccessBigPhotoView-->
+</button>
+</img>
+
+<img src = "./pages/public/Unnio/subimages/posts/Screenshot 2025-06-01 161522.png" style = "width: 95%; height: 95%; ">
+<button onclick='ShowContent( "ImageView_Big" ); SetImage( "ImageView_Big_Img", "./pages/public/Unnio/subimages/posts/Screenshot 2025-06-01 161522.png" )' style="background-color: rgba(0, 0, 0, 0); border-width: 0px; position: absolute; margin-top: 5px; margin-left: -30px; height:20px;">
+<img src = "./images/i_zoom.png" style = "min-height: 100%; min-width: 100%; width: 100%; height: 100%; cursor: pointer; cursor: pointer;"></img> <!--AccessBigPhotoView-->
+</button>
+</img>
+
+<button onclick='ToggleContent( "img_post1748795717980" ); ToggleText( "img_post1748795717980_button", "show more images ▲", "show more images ▼" );'><p name = "img_post1748795717980_button" class = "dropdown">show more images ▲</p></button>
+<div name = "img_post1748795717980"> 
+
+<img src = "./pages/public/Unnio/subimages/posts/Screenshot 2025-06-01 161546.png" style = "width: 95%; height: 95%; ">
+<button onclick='ShowContent( "ImageView_Big" ); SetImage( "ImageView_Big_Img", "./pages/public/Unnio/subimages/posts/Screenshot 2025-06-01 161546.png" )' style="background-color: rgba(0, 0, 0, 0); border-width: 0px; position: absolute; margin-top: 5px; margin-left: -30px; height:20px;">
+<img src = "./images/i_zoom.png" style = "min-height: 100%; min-width: 100%; width: 100%; height: 100%; cursor: pointer; cursor: pointer;"></img> <!--AccessBigPhotoView-->
+</button>
+</img>
+
+<img src = "./pages/public/Unnio/subimages/posts/Screenshot 2025-06-01 161315.png" style = "width: 95%; height: 95%; ">
+<button onclick='ShowContent( "ImageView_Big" ); SetImage( "ImageView_Big_Img", "./pages/public/Unnio/subimages/posts/Screenshot 2025-06-01 161315.png" )' style="background-color: rgba(0, 0, 0, 0); border-width: 0px; position: absolute; margin-top: 5px; margin-left: -30px; height:20px;">
+<img src = "./images/i_zoom.png" style = "min-height: 100%; min-width: 100%; width: 100%; height: 100%; cursor: pointer; cursor: pointer;"></img> <!--AccessBigPhotoView-->
+</button>
+</img>
+
+</div>
+<script> HideContent( "img_post1748795717980" ); </script>
+</th>
+<th style="width:80%; vertical-align: top;">
+<p>Unnio was originally developed for my university's tools development course however, it has come a long way since the course's inception, and I have worked on it in my own time after the course ended, making minor adjustments to polish it up, and search for any bugs and get those fixed as well.</p>
+<p>Unnio is a tool designed to help developers better track the progress of their work through its Kanban boards, which can also be automated thanks to stack actions that change the properties and style of a board, and node conditions that can move nodes around based on data in your asset or code databases. The layout of the boards is designed to be very smiler to github projects boards so if you have used that using this should not be to difficult but even if you haven't Unnio comes fit with a whole tutorial walk-through and, it also comes with the tutorial index which acts as a collection of power points walking you though the many aspects of this tool.</p>
+<p>Unnio, also comes with many more features than than just the Kanban board, such as the issue tracking system, which can perform unit testing or have issues manually added to it so that they are all in one place for everyone to see. There is also the Unnio template viewer, which allows you to browse a collection of boards on the internet for one that will suit your needs, and you can then download this board and use it as a base template for your own work.</p>
+<p>if you wish to download Unnio, and try it for your self, or view its source code and changelog, the link for that is <a href = "https://bobbobson21.github.io/pages/public/Unnio/" target="_blank">here</a>.</p>
+</th>
+</tr>
+</table>
+
+<p class = "tags">skills developed: c# coding, c# attributes & reflection, Unity, Unity tools development, website development</p>
+
+</div>
+</div>
+
+<div class = "ContentBoxSmall-wapper" name = "uni">
+<div class= "ContentBoxSmall" style ="padding-top: -10px;">
+
+<table style="width:100%; margin-top:0px; margin-bottom:-20px;">
+<tr>
+<th style="width:50%;"><h2>Boxed up</h2></th>
+<th style="width:50%"><img class="tagbox-long" src = "./images/i_taguni.png"></img></th>
+</tr>
+</table>
+
+<table style="width:100%;">
+<tr>
+<th style="width:80%; vertical-align: top;">
+<p class = "margin"><a href = "https://sebastian-lucker.itch.io/boxed-up" target="_blank">Boxed up</a> is a game created by me and about thirty other people. The game was created for the universities collab course which requires groups to work together to create a game all by them self's.</p>
+<p class = "margin">The game we made is about a man works a parcel warehouse and this warehouse he works at is also filled with goblins and monsters that are trying to get into the boxes and escape to freedom. Your job is to find out what boxes there in and then send those boxes off to be incinerated and send the other ones there not in back to the company. You do this for five in game days and on each day something changes like in papers please.</p>
+<p class = "margin">For this game I was responsible for getting everyone accessed to the git hub repository, stylizing and or creating all the UIs based off provided concept art, making everything to do with the conveyor belts, making the scrapped X-ray feature and doing a lot of the bug fixing. I was also responsible for doing a lot of the smaller tasks such as the intro splash screen or the strike lights.</p>
+<p class = "margin">The Staffordshire university fourm thread for my work can be found <a href = "https://digitalacademy.staffs.ac.uk/forum/index.php?/topic/74755-edwards-kyle-e017770n" target="_blank">here</a>  and a youtube playlist of all my video recorded work can be found <a href = "https://www.youtube.com/watch?v=v7QkttbML0E&list=PLuvhxtZKFNgDzzoDT9Zsn3y_ZP6jul7yO" target="_blank">here</a>.</p>
+</th>
+
+<th style="width:auto; vertical-align: top;">
+<img src = "./images/postsimg/Screenshot2025-05-12100035.thumb.png.9a9663325a415f0ce4d6eebcaee770dc.png" style = "width: 95%; height: 95%; margin-left: 5px;">
+<button onclick='ShowContent( "ImageView_Big" ); SetImage( "ImageView_Big_Img", "./images/postsimg/Screenshot2025-05-12100035.thumb.png.9a9663325a415f0ce4d6eebcaee770dc.png" )' style="background-color: rgba(0, 0, 0, 0); border-width: 0px; position: absolute; margin-top: 5px; margin-left: -30px;  height:20px;">
+<img src = "./images/i_zoom.png" style = "min-height: 100%; min-width: 100%; width: 100%; height: 100%; cursor: pointer;"></img> <!--AccessBigPhotoView-->
+</button>
+</img>
+
+<img src = "./images/postsimg/image.thumb.png.5dce78a5cd17f206d35d22e43064e66c.png" style = "width: 95%; height: 95%; margin-left: 5px;">
+<button onclick='ShowContent( "ImageView_Big" ); SetImage( "ImageView_Big_Img", "./images/postsimg/image.thumb.png.5dce78a5cd17f206d35d22e43064e66c.png" )' style="background-color: rgba(0, 0, 0, 0); border-width: 0px; position: absolute; margin-top: 5px; margin-left: -30px;  height:20px;">
+<img src = "./images/i_zoom.png" style = "min-height: 100%; min-width: 100%; width: 100%; height: 100%; cursor: pointer; cursor: pointer;"></img> <!--AccessBigPhotoView-->
+</button>
+</img>
+
+<button onclick='ToggleContent( "img_collab" ); ToggleText( "img_collab_button", "show more images ▲", "show more images ▼" );'><p name = "img_collab_button" class = "dropdown">show more images ▲</p></button>
+<div name = "img_collab">
+
+<img src = "./images/postsimg/image.thumb.png.0b27ae177701bd896a27cea1b0af7166.png" style = "width: 95%; height: 95%; margin-left: 5px;">
+<button onclick='ShowContent( "ImageView_Big" ); SetImage( "ImageView_Big_Img", "./images/postsimg/image.thumb.png.0b27ae177701bd896a27cea1b0af7166.png" )' style="background-color: rgba(0, 0, 0, 0); border-width: 0px; position: absolute; margin-top: 5px; margin-left: -30px;  height:20px;">
+<img src = "./images/i_zoom.png" style = "min-height: 100%; min-width: 100%; width: 100%; height: 100%; cursor: pointer; cursor: pointer;"></img> <!--AccessBigPhotoView-->
+</button>
+</img>
+
+<img src = "./images/postsimg/Screenshot 2025-05-19 204302.png" style = "width: 95%; height: 95%; margin-left: 5px;">
+<button onclick='ShowContent( "ImageView_Big" ); SetImage( "ImageView_Big_Img", "./images/postsimg/Screenshot 2025-05-19 204302.png" )' style="background-color: rgba(0, 0, 0, 0); border-width: 0px; position: absolute; margin-top: 5px; margin-left: -30px;  height:20px;">
+<img src = "./images/i_zoom.png" style = "min-height: 100%; min-width: 100%; width: 100%; height: 100%; cursor: pointer; cursor: pointer;"></img> <!--AccessBigPhotoView-->
+</button>
+</img>
+
+<img src = "./images/postsimg/Screenshot2025-05-03185113.png.bbd765c181c0c39aefadce09591b6b92.png.220d47c6ec513a089f56f6e61523e7de.png" style = "width: 95%; height: 95%; margin-left: 5px;">
+<button onclick='ShowContent( "ImageView_Big" ); SetImage( "ImageView_Big_Img", "./images/postsimg/Screenshot2025-05-03185113.png.bbd765c181c0c39aefadce09591b6b92.png.220d47c6ec513a089f56f6e61523e7de.png" )' style="background-color: rgba(0, 0, 0, 0); border-width: 0px; position: absolute; margin-top: 5px; margin-left: -30px;  height:20px;">
+<img src = "./images/i_zoom.png" style = "min-height: 100%; min-width: 100%; width: 100%; height: 100%; cursor: pointer; cursor: pointer;"></img> <!--AccessBigPhotoView-->
+</button>
+</img>
+
+</div>
+<script> HideContent( "img_collab" ); </script>
+
+</th>
+</tr>
+</table>
+
+<button onclick='ToggleContent( "vid_boxedup" ); ToggleText( "vid_boxedup_button", "show trailer video ▲", "show trailer video ▼" );'><p name = "vid_boxedup_button" class = "dropdown"> show trailer video ▲</p></button>
+<div name = "vid_boxedup" class = "VideoWapper"><iframe src="https://www.youtube.com/embed/fDOm6hiVwwk?si=fc4wRVgUAAuskT83" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+<script> HideContent( "vid_boxedup" ); </script>
+
+<div></div>
+<button onclick='ToggleContent( "vid_boxedupsr" ); ToggleText( "vid_boxedupsr_button", "show showreel video ▲", "show showreel video ▼" );'><p name = "vid_boxedupsr_button" class = "dropdown"> show showreel video ▲</p></button>
+<div name = "vid_boxedupsr" class = "VideoWapper"><iframe src="https://www.youtube.com/embed/_nIJPn2mH5Q?si=Sn816uCNLrkc39If" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+<script> HideContent( "vid_boxedupsr" ); </script>
+
+<p class = "tags">skills developed: teamwork, Unreal blueprint, level design (made prototype level), UI design</p>
+
+</div>
+</div>
+
+<!--2024-->
+<div class = "ContentBoxSmall-wapper" name = "year" id = "2024">
+<div class="ContentBoxSmall-year">
+<h2 style="width:100%;">2024</h2>
+</div>
+</div>
+
+<div class = "ContentBoxSmall-wapper" name = "indie">
+<div class = "ContentBoxSmall" style ="padding-top: -10px;">
+
+<table style="width:100%; margin-top:0px; margin-bottom:-20px;">
+<tr>
+<th style="width:50%;"><h2>NND</h2></th>
+<th style="width:50%"><img class="tagbox-long" src = "./images/i_tagindie.png"></img></th>
+</tr>
+</table>
+
+<table style="width:100%;">
+<tr>
+<th style="width:auto; vertical-align: top;">
+<img src = "./images/postsimg/Screenshot 2024-10-06 213637.png" style = "width: 95%; height: 95%; margin-left: 5px;">
+<button onclick='ShowContent( "ImageView_Big" ); SetImage( "ImageView_Big_Img", "./images/postsimg/Screenshot 2024-10-06 213637.png" )' style="background-color: rgba(0, 0, 0, 0); border-width: 0px; position: absolute; margin-top: 5px; margin-left: -30px; height:20px;">
+<img src = "./images/i_zoomb.png" style = "  min-height: 100%; min-width: 100%; width: 100%; height: 100%; cursor: pointer; cursor: pointer;"></img> <!--AccessBigPhotoView-->
+</button>
+</img>
+</th>
+
+<th style="width:80%; vertical-align: top;">
+<p>NND or neural network disassembly is a script of sorts that I created in the lua coding language. It is designed to go though all possible combinations of inputs, if your using floats it will only go thougth them all to a certian level of detail, for a neural network and then it logs the output it got from the series of inputs it provided.</p>
+<p>Once it has gone thought all combinations of inputs it will then try to write a program that will accomplish the same tasks as the neural network in a language of your choice but it will require you to provide it details about that language and it also will not work with all of them.</p>
+<p>This tool is great because it will allow us to much better understand how neural network work and how they come to the conclusions and ideas that they do however this type of tool is still currently in its infancy so the code it makes isn't as good as it could be yet but it is a start.</p>
+<p>The photo to the left shows how it interpreted a neural XOR gate into lua. A link to this system can be found <a href = "https://github.com/bobbobson21/NND" target="_blank">here</a>.</p>
+</th>
+</tr>
+</table>
+
+<p class = "tags">skills developed: lua, neural networking</p>
+
+</div>
+</div>
+
+<div class = "ContentBoxSmall-wapper" name = "indie">
+<div class = "ContentBoxSmall" style ="padding-top: -10px;">
+
+<table style="width:100%; margin-top:0px; margin-bottom:-20px;">
+<tr>
+<th style="width:50%;"><h2>Table File Format</h2></th>
+<th style="width:50%"><img class="tagbox-long" src = "./images/i_tagindie.png"></img></th>
+</tr>
+</table>
+
+<table style="width:100%;">
+
+<tr>
+
+<th style="width:80%; vertical-align: top;">
+<p class = "margin">The table file format is a a file format I create for easier understanding and editing involving a collection of data. The file format has also developed into a really useful tool for storing collections of data, like files and folders, without any level compression which helps minimize risk of files corrupting and the extraction process is significantly more faster. How this file format works is it has a header the starts at a left bracket and ends at a right one, the header then contains three values per data in the format, the first one is location and name which is represented like a Linux directory and then the first and second value is the start and end locations of the data in the file subtracted by the header length. The header length is the distance between the two brackets.</p>
+<p class = "margin">Files in the Table(tbl) file format can only currently be interacted with though c++ at the moment and you can write maps, tress and all sorts in and out of it additionally the format has something call compaction which can be used to condense the files by removing pointless data.</p>
+</th>
+
+<th style="width:auto; vertical-align: top;">
+<img src = "./images/postsimg/Screenshot 2024-10-17 120123.png" style = "width: 80%; height: 80%; margin-left:10%;">
+<button onclick='ShowContent( "ImageView_Big" ); SetImage( "ImageView_Big_Img", "./images/postsimg/Screenshot 2024-10-17 120123.png" )' style="background-color: rgba(0, 0, 0, 0); border-width: 0px; position: absolute; margin-top: 5px; margin-left: -30px; height:20px;">
+<img src = "./images/i_zoomb.png" style = "  min-height: 100%; min-width: 100%; width: 100%; height: 100%; cursor: pointer; cursor: pointer;"></img> <!--AccessBigPhotoView-->
+</button>
+</img>
+</th>
+
+</tr>
+</table>
+
+<p class = "tags">skills developed: c++, file managment</p>
+
+</div>
+</div>
+
+<div class = "ContentBoxSmall-wapper" name = "uni">
+<div class = "ContentBoxSmall">
+
+<table style="width:100%; margin-top:0px; margin-bottom:-20px;">
+<tr>
+<th style="width:50%;"><h1>Gravity shift combat</h1></th>
+<th style="width:50%"><img class="tagbox-long" src = "./images/i_taguni.png"></img></th>
+</tr>
+</table>
+
+<table style="width:100%;">
+<tr>
+<th style="width:auto; vertical-align: top;">
+<img src = "./images/postsimg/66536b45c42798acefdbfb72_Screenshot 2024-05-26 180241-p-500.png" style = "width: 95%; height: 95%; margin-left: 5px;">
+<button onclick='ShowContent( "ImageView_Big" ); SetImage( "ImageView_Big_Img", "./images/postsimg/66536b45c42798acefdbfb72_Screenshot 2024-05-26 180241-p-500.png" )' style="background-color: rgba(0, 0, 0, 0); border-width: 0px; position: absolute; margin-top: 5px; margin-left: -30px; height:20px;">
+<img src = "./images/i_zoom.png" style = "  min-height: 100%; min-width: 100%; width: 100%; height: 100%; cursor: pointer; cursor: pointer;"></img> <!--AccessBigPhotoView-->
+</button>
+</img>
+
+<img src = "./images/postsimg/66536e589469cfc936eae627_194-p-500.png" style = "width: 95%; height: 95%; margin-left: 5px;">
+<button onclick='ShowContent( "ImageView_Big" ); SetImage( "ImageView_Big_Img", "./images/postsimg/66536e589469cfc936eae627_194-p-500.png" )' style="background-color: rgba(0, 0, 0, 0); border-width: 0px; position: absolute; margin-top: 5px; margin-left: -30px; height:20px;">
+<img src = "./images/i_zoom.png" style = "  min-height: 100%; min-width: 100%; width: 100%; height: 100%; cursor: pointer; cursor: pointer;"></img> <!--AccessBigPhotoView-->
+</button>
+</img>
+
+<img src = "./images/postsimg/66536c2c9976ee03ffc4b4e1_Screenshot 2024-05-26 180629-p-500.png" style = "width: 95%; height: 95%; margin-left: 5px;">
+<button onclick='ShowContent( "ImageView_Big" ); SetImage( "ImageView_Big_Img", "./images/postsimg/66536c2c9976ee03ffc4b4e1_Screenshot 2024-05-26 180629-p-500.png" )' style="background-color: rgba(0, 0, 0, 0); border-width: 0px; position: absolute; margin-top: 5px; margin-left: -30px; height:20px;">
+<img src = "./images/i_zoom.png" style = "  min-height: 100%; min-width: 100%; width: 100%; height: 100%; cursor: pointer; cursor: pointer;"></img> <!--AccessBigPhotoView-->
+</button>
+</img>
+</th>
+
+<th style="width:85%; vertical-align: top;">
+<p>Gravity Shift Combat is another game I made for a university modual (Bespoke Platform Development) and this game is made for the Evercade exp. I this game you objective is to pretty much kill everyone in the room with you and you can do this though a combination of gravity shifting and firing energy balls at your foes and you can do that because you know magic.</p>
+<p>the game is pretty short and it only consist of four levels but these levels can be quite the fun challenge to overcome especially in ultra hard difficulty on top of that all these levels. Apart from the levels however a lot of love went into making everything from the particle system to the damage system, in this game.</p>
+<p>if you want to see all the videos I recorded while completing this game then click <a href = "https://www.youtube.com/watch?v=jhbIRvRWDBg&list=PLuvhxtZKFNgB9bAcyFye54MWgtHmXrZV8" target="_blank">here</a> and you can click <a href = "https://digitalacademy.staffs.ac.uk/forum/index.php?/topic/65918-kyle-edwards-e017770n/" target="_blank">here</a> to see the dev form posts.</p>
+<p>Note if you obtain my grade for this from the academic board it will be forty or forty three percent and this is because I thougth my computer submitted my work but it did not and I did not realize this until a lecturer contacted me about 4 days after the dead line for summation resulting in my grade being caped. The uncapped grade for the games work alone is nighty four percent and the total uncaped modual grade is 88.6 percent. Moral of the story get better internet and hope the summation portal is open a month ahead of time so something could of at least been marked without the cap.</p>
+</th>
+</tr>
+</table>
+
+<button onclick='ToggleContent( "vid_gravity_shift_combat" ); ToggleText( "vid_gravity_shift_combat_button", "show video ▲", "show video ▼" );'><p name = "vid_gravity_shift_combat_button" class = "dropdown"> show video ▲</p></button>
+<div name = "vid_gravity_shift_combat" class = "VideoWapper"><iframe src="https://www.youtube.com/embed/NnoeEabqG8o?si=LSx48D8UIulZv5z-#view" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+<script> HideContent( "vid_gravity_shift_combat" ); </script>
+
+<p class = "tags">skills developed: engine development, entity management, physics, collision, effect system creation and effects, bespoke platform game creation, sound system & sound design, c++</p>
+
+</div>
+</div>
+
+<div class = "ContentBoxSmall-wapper" name = "uni">
+<div class = "ContentBoxSmall" style ="padding-top: -10px;">
+
+<table style="width:100%; margin-top:0px; margin-bottom:-20px;">
+<tr>
+<th style="width:50%;"><h2>Enchanted forest</h2></th>
+<th style="width:50%"><img class="tagbox-long" src = "./images/i_taguni.png"></img></th>
+</tr>
+</table>
+
+<table style="width:100%;">
+<tr>
+<th style="width:80%; vertical-align: top;">
+<p class = "margin"><a href = "https://ilikecreepers3334.itch.io/enchanted-forest" target="_blank">Enchanted Forest</a> is a game I made for one of my university moduals (c# scripting for game engines and the dev forms posts for that modual can be <a href = "https://digitalacademy.staffs.ac.uk/forum/index.php?/topic/63486-edwards-kyle-e017770n/" target="_blank">here</a>) and in this game, your objective is to try and live for as long as you can as tanks shoot at you consistently but what makes this even harder is the AI director Omega.</p>
+<p class = "margin">Omega is a lot like the AI director from Left for Dead except our AI director has one task which is to come up with the best plans to kill you and it would be very good at this job but we limit its resources and wipe its mind at the start of every game but as you accumulate more points it will know more about your play style and it will slow get given more resources untill you reach 1500 points at which point it will have all the resources it can have.</p>
+<p class = "margin">The combat for this game is also really simple but well-liked. The combat consists of three weapons red, green, and blue. each of these weapons will also have a coasponding enemy type of the same color and if you use the right weapon for the right NPC you will get a critical damage point boost. Apart from that, there are also power ups that ethier increese your speed or health or they would give you a force field of protection addational the faster you went the slower everything else became and this made people feel like they were supper heroes.</p>
+<p class = "margin">This second photo on the left shows the power up forcefield and this forcefield can also bounce enemy projectiles off it as well as push aroud the tanks such as the blue tanks which can also be seen in the photo. These tanks will also try to flee from you when they have taken to much damage as well which is a nice little trait to them.</p>
+</th>
+
+<th style="width:auto; vertical-align: top;">
+
+<img src = "./images/postsimg/66520f57455f74462bd917cd_Screenshot 2024-05-25 170616-p-800.png" style = "width: 95%; height: 95%; margin-left: 5px;">
+<button onclick='ShowContent( "ImageView_Big" ); SetImage( "ImageView_Big_Img", "./images/postsimg/66520f57455f74462bd917cd_Screenshot 2024-05-25 170616-p-800.png" )' style="background-color: rgba(0, 0, 0, 0); border-width: 0px; position: absolute; margin-top: 5px; margin-left: -30px;  height:20px;">
+<img src = "./images/i_zoom.png" style = "  min-height: 100%; min-width: 100%; width: 100%; height: 100%; cursor: pointer; cursor: pointer;"></img> <!--AccessBigPhotoView-->
+</button>
+</img>
+
+<img src = "./images/postsimg/66520f40a4e35802d3e20896_Screenshot 2024-05-25 171016-p-800.png" style = "width: 95%; height: 95%; margin-left: 5px;">
+<button onclick='ShowContent( "ImageView_Big" ); SetImage( "ImageView_Big_Img", "./images/postsimg/66520f40a4e35802d3e20896_Screenshot 2024-05-25 171016-p-800.png" )' style="background-color: rgba(0, 0, 0, 0); border-width: 0px; position: absolute; margin-top: 5px; margin-left: -30px;  height:20px;">
+<img src = "./images/i_zoomb.png" style = "  min-height: 100%; min-width: 100%; width: 100%; height: 100%; cursor: pointer; cursor: pointer;"></img> <!--AccessBigPhotoView-->
+</button>
+</img>
+
+</th>
+</tr>
+</table>
+
+<button onclick='ToggleContent( "vid_enchanted_forest" ); ToggleText( "vid_enchanted_forest_button", "show video ▲", "show video ▼" );'><p name = "vid_enchanted_forest_button" class = "dropdown"> show video ▲</p></button>
+<div name = "vid_enchanted_forest" class = "VideoWapper"><iframe src="https://www.youtube.com/embed/j6D8pk6AS7U?si=6pQ3kTPFxEqXF2ns" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+<script> HideContent( "vid_enchanted_forest" ); </script>
+
+<p class = "tags">skills developed: unity, unity 2D, c#, AI, game flow controlled by AI, endless terrain generation, sound design</p>
+
+</div>
+</div>
+
+
+<!--2023-->
+<div class = "ContentBoxSmall-wapper" name = "year" id = "2023">
+<div class="ContentBoxSmall-year">
+<h2 style="width:100%;">2023</h2>
+</div>
+</div>
+
+<div class = "ContentBoxSmall-wapper" name = "uni+indie">
+<div class = "ContentBoxSmall" style ="padding-top: -10px;">
+
+<table style="width:100%; margin-top:0px; margin-bottom:-20px;">
+<tr>
+<th style="width:50%;"><h2>Cable connect 1 & 2</h2></th>
+<th style="width:50%"><img class="tagbox-long" src = "./images/i_taguni.png"></img><img class="tagbox-long" src = "./images/i_tagindie.png"></img></th>
+</tr>
+</table>
+
+<table style="width:100%;">
+
+<tr>
+<th style="width:auto; vertical-align: top;">
+<img src = "./images/postsimg/651a9b9a218a90940c0d682e_Jh+PkF-p-800.png" style = "width: 95%; height: 95%; margin-left: 5px;">
+<button onclick='ShowContent( "ImageView_Big" ); SetImage( "ImageView_Big_Img", "./images/postsimg/651a9b9a218a90940c0d682e_Jh+PkF-p-800.png" )' style="background-color: rgba(0, 0, 0, 0); border-width: 0px; position: absolute; margin-top: 5px; margin-left: -30px; height:20px;">
+<img src = "./images/i_zoom.png" style = "  min-height: 100%; min-width: 100%; width: 100%; height: 100%; cursor: pointer; cursor: pointer;"></img> <!--AccessBigPhotoView-->
+</button>
+
+</img>
+</th>
+
+<th style="width:75%; vertical-align: top;">
+<p>Cable connect is a set of games inspired the watch dogs hacking puzzles with a lot of the second game also improving up one the puzzles with new mini mechanics like node attachments that randomly spin the nodes around the node the attachment is attached to or node attachments that need a certain amount of power before the node it is attached to will do anything.</p>
+<p>The game also comes with nice stylized 3D backgrounds and clear sound effects it is sadly a bit short but systems are in place that will allow me to make more levels in the future should I want to.</p>
+<p>The second game (the first one was for a game jam and it isn't very good as team mates did not do there job) can be found <a href = "https://ilikecreepers3334.itch.io/cable-connect-2" target="_blank">here</a> and the code for it (so others can learn how to make there own kind of electrical based game) can be found <a href = "https://github.com/bobbobson21/reconnect" target="_blank">here</a>.</p>
+</th>
+</tr>
+</table>
+
+<p class = "tags">skills developed: blueprint, materials, how to make a circuit system, puzzle creation, sound design</p>
+</div>
+</div>
+
+<div class = "ContentBoxSmall-wapper" name = "indie">
+<div class = "ContentBoxSmall" style ="padding-top: -10px;">
+
+<table style="width:100%; margin-top:0px; margin-bottom:-20px;">
+<tr>
+<th style="width:50%;"><h2>Public AI</h2></th>
+<th style="width:50%"><img class="tagbox-long" src = "./images/i_tagindie.png"></img></th>
+</tr>
+</table>
+
+<table style="width:100%;">
+<tr>
+<th style="width:80%; vertical-align: top;">
+<p class = "margin"><a href = "https://github.com/bobbobson21/publicAI" target="_blank">Public AI</a> or pal as it is referred to as in the code is a system I made that allows you to create your own chat GPT like that is also more deterministic(controllable) and humanistic(emotional and epiphytic) then chat GPT AI could ever be. It can also run functions as well and use the result of thoese functions in it's responses which chat GPT could only recently do. This AI was also inspired by zagisa from a "chat with it" and kizan from "event[0]" which also means you can use it in video games (if you don't mind rewriting a bit of code to hook it it up to said game) should you want to.</p>
+<p class = "margin">public AI also now comes with a bunch of tools which allow you to insert/teach the AI a bunch of information really fast as well as teach it how to understand spelling errors, how to use synonyms and all theses tools can be found with the folder ToolsToEnhanceAI which is located within the public AI repository.</p>
+<p class = "margin">This project was originally inspired by some of the AI work I did at collage however this work is drastically different from the the 'chat with it AI' that I made in collage and it also works far better which is why this has no college tag.</p>
+</th>
+
+<th style="width:auto; vertical-align: top;">
+<img src = "./images/postsimg/650974c68fa84a0a377e5b14_logo.png" style = "width: 95%; height: 95%; margin-left: 5px;">
+<button onclick='ShowContent( "ImageView_Big" ); SetImage( "ImageView_Big_Img", "./images/postsimg/650974c68fa84a0a377e5b14_logo.png" )' style="background-color: rgba(0, 0, 0, 0); border-width: 0px; position: absolute; margin-top: 5px; margin-left: -30px; height:20px;">
+<img src = "./images/i_zoomb.png" style = "  min-height: 100%; min-width: 100%; width: 100%; height: 100%; cursor: pointer; cursor: pointer;"></img> <!--AccessBigPhotoView-->
+</button>
+</img>
+</th>
+</tr>
+</table>
+
+<p class = "tags">skills developed: Non neural talking AI development, emotion simulation, AI tools for faster teaching</p>
+</div>
+</div>
+
+<div class = "ContentBoxSmall-wapper" name = "indie">
+<div class = "ContentBoxSmall" style ="padding-top: -10px;">
+
+<table style="width:100%; margin-top:0px; margin-bottom:-20px;">
+<tr>
+<th style="width:50%;"><h2>Core engine public release</h2></th>
+<th style="width:50%"><img class="tagbox-long" src = "./images/i_tagindie.png"></img></th>
+</tr>
+</table>
+
+<table style="width:100%;">
+<tr>
+<th style="width:auto; vertical-align: top;">
+<img src = "./images/postsimg/6490394d03db594661c54224_photo-p-800.png" style = "width: 95%; height: 95%; margin-left: 5px;">
+<button onclick='ShowContent( "ImageView_Big" ); SetImage( "ImageView_Big_Img", "./images/postsimg/6490394d03db594661c54224_photo-p-800.png" )' style="background-color: rgba(0, 0, 0, 0); border-width: 0px; position: absolute; margin-top: 5px; margin-left: -30px; height:20px;">
+<img src = "./images/i_zoomb.png" style = "  min-height: 100%; min-width: 100%; width: 100%; height: 100%; cursor: pointer; cursor: pointer;"></img> <!--AccessBigPhotoView-->
+</button>
+</img>
+</th>
+
+<th style="width:70%; vertical-align: top;">
+<p>The core engine is a modafiyed version of the <a href = "https://love2d.org/" target="_blank">love 2d</a> engine that supports systems like: entities, cameras, particles, hooks, timers, time logic and resource management (ie textures and sound files) out of the box.</p>
+<p>The engine is also very special as it also comes with a loading system that allows for the engine to stream in all the entities and resources with an actual loading screen rather than just having a whitebox but something else that is very special about this game engine is that it uses a new type of ticking (by ticking I mean a function that you run every so and so seconds to get an endless-ish loop) and this new type of ticking is a lot like delta time except it doesn't give you a number to times the speed of objects by in order for the movement to be accurate instead it work a lot like delta time but inside of the tick function is some code that uses the delta time to determine if and how many time it should run another function and we use that as our tick function everywhere else.</p>
+<p>This is all special because it will help a lot of people who are just getting started with love 2d like game engines who are a bit unsure on how to do things like entities or resource managment.</p>
+<p>I released the engine for public use this year and the source code for it can also be found <a href = "https://github.com/bobbobson21/core_engine" target="_blank">here</a>.</p>
+</th>
+</tr>
+</table>
+
+<p class = "tags">skills developed: lua, engine development, entity management, camera projection, particle system development</p>
+</div>
+</div>
+
+<div class = "ContentBoxSmall-wapper" name = "collage">
+<div class = "ContentBoxSmall" style ="padding-top: -10px;">
+
+<table style="width:100%; margin-top:0px; margin-bottom:-20px;">
+<tr>
+<th style="width:50%;"><h2>A chat with it</h2></th>
+<th style="width:50%"><img class="tagbox-long" src = "./images/i_tagcollage.png"></img></th>
+</tr>
+</table>
+
+<table style="width:100%;">
+
+<tr>
+<th style="width:75%; vertical-align: top;">
+<p class = "margin">This year I worked on a game with brainstorm studios called "a chat with it", and in this game, you play as a human in the year 2030 stuck within a vacant city, with walls of unknown origin surrounding you and making it difficult to escape from this desolate, empty place.</p>
+<p class = "margin">To get out of the city you must communicate with an AI called Zagisa whose job is to oversee the city and ensure all is well and working but with his help he can unlock doors for you and answer questions you may have.</p>
+<p class = "margin">This project required be to work in a team and in this team my primary responsibility development of the AI and I also developed a level for the game after I completed the AIs development. My other team mates were responsible for making, materials, models, level and doing some of the code however I took the initiative in doing most of it. The AI that you talk to in this game is also also a lot like public AI except it was made in unreal but this cam at the cost of the AI being no where near as smart as public AI but despite this its still good at being a realistic chat bot that you can emphasize with. If you wish to see my dev log for this project click <a href = "https://1drv.ms/p/c/cbefb7f60b561fa3/EaMfVgv2t-8ggMv4AwAAAAAB_esaWMzPwcj1uBQUrf565w?e=nTNmtc" target="_blank">here</a>.</p>
+<p class = "margin">Despite the AI being made in blue print some tasks were done in c++. The main systems designed in c++ were a new a new level loading system that could ensure all materials were loaded before letting the player play without us having to stream in the levels.</p>
+</th>
+
+<th style="width:auto; vertical-align: top;">
+<img src = "./images/postsimg/64562c3c09c5e16ba60c7ad3_image70-p-800.png" style = "width: 95%; height: 95%; margin-left: 5px;">
+<button onclick='ShowContent( "ImageView_Big" ); SetImage( "ImageView_Big_Img", "./images/postsimg/64562c3c09c5e16ba60c7ad3_image70-p-800.png" )' style="background-color: rgba(0, 0, 0, 0); border-width: 0px; position: absolute; margin-top: 5px; margin-left: -30px;  height:20px;">
+<img src = "./images/i_zoom.png" style = "  min-height: 100%; min-width: 100%; width: 100%; height: 100%; cursor: pointer; cursor: pointer;"></img> <!--AccessBigPhotoView-->
+</button>
+</img>
+
+<img src = "./images/postsimg/64562cc709c5e1d6660c8185_image78-p-800.png" style = "width: 95%; height: 95%; margin-left: 5px;">
+<button onclick='ShowContent( "ImageView_Big" ); SetImage( "ImageView_Big_Img", "./images/postsimg/64562cc709c5e1d6660c8185_image78-p-800.png" )' style="background-color: rgba(0, 0, 0, 0); border-width: 0px; position: absolute; margin-top: 5px; margin-left: -30px;  height:20px;">
+<img src = "./images/i_zoom.png" style = "  min-height: 100%; min-width: 100%; width: 100%; height: 100%; cursor: pointer; cursor: pointer;"></img> <!--AccessBigPhotoView-->
+</button>
+</img>
+</th>
+</tr>
+</table>
+
+<button onclick='ToggleContent( "vid_A_chat_with_it" ); ToggleText( "vid_A_chat_with_it_button", "show trailer ▲", "show trailer ▼" );'><p name = "vid_A_chat_with_it_button" class = "dropdown"> show trailer ▲</p></button>
+<div name = "vid_A_chat_with_it" class = "VideoWapper" style = "margin-bottom: 5px;"><iframe src="https://www.youtube.com/embed/1E00LbJ6eBE?si=TKcEOpSKyX-vWxfE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+<script> HideContent( "vid_A_chat_with_it" ); </script>
+
+<div></div>
+
+<button onclick='ToggleContent( "vid_A_chat_with_itb" ); ToggleText( "vid_A_chat_with_itb_button", "show gameplay ▲", "show gameplay ▼" );'><p name = "vid_A_chat_with_itb_button" class = "dropdown"> show gameplay ▲</p></button>
+<div name = "vid_A_chat_with_itb" class = "VideoWapper"><iframe src="https://www.youtube.com/embed/UdcG4JF2aWw?si=gRC5vKWoKer_6G6P" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+<script> HideContent( "vid_A_chat_with_itb" ); </script>
+
+<p class = "tags">skills developed: teamwork, blueprint, materials, effects, model adjusting, c++, AI development, sound design, video editing in premiere pro</p>
+
+</div>
+</div>
+
+
+<!--2022-->
+<div class = "ContentBoxSmall-wapper" name = "year" id = "2022">
+<div class="ContentBoxSmall-year">
+<h2 style="width:100%;">2022</h2>
+</div>
+</div>
+
+<div class = "ContentBoxSmall-wapper" name = "collage">
+<div class = "ContentBoxSmall" style ="padding-top: -10px;">
+
+<table style="width:100%; margin-top:0px; margin-bottom:-20px;">
+<tr>
+<th style="width:50%;"><h2>Lyra attack and defend</h2></th>
+<th style="width:50%"><img class="tagbox-long" src = "./images/i_tagcollage.png"></img></th>
+</tr>
+</table>
+
+<table style="width:100%;">
+
+<tr>
+<th style="width:auto; vertical-align: top;">
+<img src = "./images/postsimg/64560e60cb110d7a30a81909_image32-p-800.png" style = "width: 95%; height: 95%; margin-left: 5px;">
+<button onclick='ShowContent( "ImageView_Big" ); SetImage( "ImageView_Big_Img", "./images/postsimg/64560e60cb110d7a30a81909_image32-p-800.png" )' style="background-color: rgba(0, 0, 0, 0); border-width: 0px; position: absolute; margin-top: 5px; margin-left: -30px;  height:20px;">
+<img src = "./images/i_zoom.png" style = "  min-height: 100%; min-width: 100%; width: 100%; height: 100%; cursor: pointer; cursor: pointer;"></img> <!--AccessBigPhotoView-->
+</button>
+</img>
+
+<img src = "./images/postsimg/64560e7c2beb50bd89a58bf3_image51-p-800.png" style = "width: 95%; height: 95%; margin-left: 5px;">
+<button onclick='ShowContent( "ImageView_Big" ); SetImage( "ImageView_Big_Img", "./images/postsimg/64560e7c2beb50bd89a58bf3_image51-p-800.png" )' style="background-color: rgba(0, 0, 0, 0); border-width: 0px; position: absolute; margin-top: 5px; margin-left: -30px;  height:20px;">
+<img src = "./images/i_zoom.png" style = "  min-height: 100%; min-width: 100%; width: 100%; height: 100%; cursor: pointer; cursor: pointer;"></img> <!--AccessBigPhotoView-->
+</button>
+</img>
+
+<button onclick='ToggleContent( "img_Lyra_attack_and_defend" ); ToggleText( "img_Lyra_attack_and_defend_button", "show more images ▲", "show more images ▼" );'><p name = "img_Lyra_attack_and_defend_button" class = "dropdown">show more images ▲</p></button>
+
+<div name = "img_Lyra_attack_and_defend">
+<img src = "./images/postsimg/64560e57d43e25ee037a6f64_image43-p-800.png" style = "width: 95%; height: 95%; margin-left: 5px;">
+<button onclick='ShowContent( "ImageView_Big" ); SetImage( "ImageView_Big_Img", "./images/postsimg/64560e57d43e25ee037a6f64_image43-p-800.png" )' style="background-color: rgba(0, 0, 0, 0); border-width: 0px; position: absolute; margin-top: 5px; margin-left: -30px;  height:20px;">
+<img src = "./images/i_zoom.png" style = "  min-height: 100%; min-width: 100%; width: 100%; height: 100%; cursor: pointer; cursor: pointer;"></img> <!--AccessBigPhotoView-->
+</button>
+</img>
+
+<img src = "./images/postsimg/64560e8d16ee12053a840a0f_image53-p-800.png" style = "width: 95%; height: 95%; margin-left: 5px;">
+<button onclick='ShowContent( "ImageView_Big" ); SetImage( "ImageView_Big_Img", "./images/postsimg/64560e8d16ee12053a840a0f_image53-p-800.png" )' style="background-color: rgba(0, 0, 0, 0); border-width: 0px; position: absolute; margin-top: 5px; margin-left: -30px;  height:20px;">
+<img src = "./images/i_zoom.png" style = "  min-height: 100%; min-width: 100%; width: 100%; height: 100%; cursor: pointer; cursor: pointer;"></img> <!--AccessBigPhotoView-->
+</button>
+</img>
+</div>
+
+<script> HideContent( "img_Lyra_attack_and_defend" ); </script>
+</th>
+
+<th style="width:80%; vertical-align: top;">
+<p>Lyra attack and Defend was a game I made for college with the Lyra game assets. in this game, you played on one of two sides (attacking or defending) in an attempt to capture or defend a set of points. if the time limit hit zero and not all points were captured blue wins likewise if all points were captured red would win but to make up for the fact that red would have to do a lot more work than blue (blue only has to keep one point to win) red dose have the advantage when it comes to the map.</p>
+<p>the game also had classes which were the: healer, the dasher, the brute, and the bot class for bots.</p>
+<p>The healer would have passive regenerative health and he could also create a ring of healing for his team to use. The dasher was made to be faster than the the other classes and they can also quick dash to places making it easier for them to get around the map and hold or defend a point while they wait for better support. The brute is a slower moving class but are also much harder to kill and they have the ability to make a force field of death.</p>
+<p>the game was well liked my many of my classmates and you can click <a href = "https://stokecoll.sharepoint.com/:f:/s/Creative/Ena4JGJVStdJt2Kh3UnummYBgno2_knxFvF0ph0j_ZQE8w?e=itVyzA" target="_blank">here (SOTC access only)</a> to see the documentation of this work.</p>
+</th>
+</tr>
+</table>
+
+
+<button onclick='ToggleContent( "vid_Lyra_attack_and_defend" ); ToggleText( "vid_Lyra_attack_and_defend_button", "show video ▲", "show video ▼" );'><p name = "vid_Lyra_attack_and_defend_button" class = "dropdown"> show video ▲</p></button>
+<div name = "vid_Lyra_attack_and_defend" class = "VideoWapper"><iframe src="https://www.youtube.com/embed/SyQDPpdIYyA?si=woDF3II6D39JPmOa" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+<script> HideContent( "vid_Lyra_attack_and_defend" ); </script>
+
+<p class = "tags">skills developed: blueprint, materials, c++, effects, FPS map design</p>
+
+</div>
+</div>
+
+<div class = "ContentBoxSmall-wapper" name = "indie">
+<div class = "ContentBoxSmall" style ="padding-top: -10px;">
+
+<table style="width:100%; margin-top:0px; margin-bottom:-20px;">
+<tr>
+<th style="width:50%;"><h2>Dots</h2></th>
+<th style="width:50%"><img class="tagbox-long" src = "./images/i_tagindie.png"></img></th>
+</tr>
+</table>
+
+<table style="width:100%;">
+<tr>
+<th style="width:70%; vertical-align: top;">
+<p class = "margin"><a href = "https://esolangs.org/wiki/Dot%27s" target="_blank">Dots</a> is a programming language made by me and it is designed in such a manner where it can do a wide range of complex tasks and also run tasks almost simultaneously however the programming language is a bit complex to work with for most people. This coding language also uses dots (like full stops and bullet point dots) to run and execute tasks hence the name.</p>
+<p class = "margin">This coding language was also inspired by ascidots however it comes with a lot more features than acids such as functions for example.</p>
+</th>
+
+<th style="width:auto; vertical-align: top;">
+<img src = "./images/postsimg/636abf85faeb120e6d5f727b_pallet-p-800.png" style = "width: 95%; height: 95%; margin-left: 5px;">
+<button onclick='ShowContent( "ImageView_Big" ); SetImage( "ImageView_Big_Img", "./images/postsimg/636abf85faeb120e6d5f727b_pallet-p-800.png" )' style="background-color: rgba(0, 0, 0, 0); border-width: 0px; position: absolute; margin-top: 5px; margin-left: -30px; height:20px;">
+<img src = "./images/i_zoomb.png" style = "  min-height: 100%; min-width: 100%; width: 100%; height: 100%; cursor: pointer; cursor: pointer;"></img> <!--AccessBigPhotoView-->
+</button>
+</img>
+</th>
+</tr>
+</table>
+
+<p class = "tags">skills developed: lua, custom coding language development</p>
+
+</div>
+</div>
+
+
+<!--2021-->
+<div class = "ContentBoxSmall-wapper" name = "year" id = "2021">
+<div class="ContentBoxSmall-year">
+<h2 style="width:100%;">2021</h2>
+</div>
+</div>
+
+<div class = "ContentBoxSmall-wapper" name = "collage">
+<div class = "ContentBoxSmall" style ="padding-top: -10px;">
+
+<table style="width:100%; margin-top:0px; margin-bottom:-20px;">
+<tr>
+<th style="width:50%;"><h2>Hide and shoot</h2></th>
+<th style="width:50%"><img class="tagbox-long" src = "./images/i_tagcollage.png"></img></th>
+</tr>
+</table>
+
+<table style="width:100%;">
+
+<tr>
+<th style="width:auto;">
+<div class = "VideoWapper-Big">
+<iframe src="https://www.youtube.com/embed/NtRAktbvnOQ" title="the video epic part two" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+</div>
+</th>
+
+<th style="width:70%; vertical-align: top;">
+<p class = "margin">Hide and shoot was another prototype of a game where you would of had to fend for you self in the dark against a threat with nothing more than a highly advance plasma shooting laser gun to keep you company.</p>
+<p class = "margin">The AI for this was also really advanced and had a really complexed system for seeking and finding players in the best way possible and I believe the game worked really well in how spooky it could be however I will say the audio could of been better and models as well. The AI was also constructed using unreal blueprint and it was constructed this way to minimize on the added complexity that comes with finding bugs in huge behaviour trees that span many files.</p>
+<p class = "margin">The subtitles in this games are also some of the best as they can change from one colour to another depending on how close you are to the sound.</p>
+</th>
+</tr>
+</table>
+
+<p class = "tags">skills developed: blueprint, materials, searching AI that's on a level smilier to that of the early hello neighbour builds, model creation, sound design</p>
+
+</div>
+</div>
+
+<div class = "ContentBoxSmall-wapper" name = "collage">
+<div class = "ContentBoxSmall" style ="padding-top: -10px;">
+
+<table style="width:100%; margin-top:0px; margin-bottom:-20px;">
+<tr>
+<th style="width:50%;"><h2>Pin speed</h2></th>
+<th style="width:50%"><img class="tagbox-long" src = "./images/i_tagcollage.png"></img></th>
+</tr>
+</table>
+
+<table style="width:100%;">
+
+<tr>
+<th style="width:75%; vertical-align: top;">
+<p class = "margin">Pin speed was a prototype of a game that worked a lot like a sonic game, where you gained speed by ramming into bad guys and there was a lot of parkour. This game had three levels to it which were simply called the grass, ice, and fire levels and all of these levels has all sorts of traps or bad guys that would try and kill you.</p>
+<p class = "margin">The game was well received by the people who played it and they did seem to enjoy it a lot as well.</p>
+</th>
+
+<th style="width:auto; vertical-align: top;">
+<img src = "./images/postsimg/63334cbb7d7517ce9e466e8c_HighresScreenshot00005-p-800.png" style = "width: 95%; height: 95%; margin-left: 5px;">
+<button onclick='ShowContent( "ImageView_Big" ); SetImage( "ImageView_Big_Img", "./images/postsimg/63334cbb7d7517ce9e466e8c_HighresScreenshot00005-p-800.png" )' style="background-color: rgba(0, 0, 0, 0); border-width: 0px; position: absolute; margin-top: 5px; margin-left: -30px;  height:20px;">
+<img src = "./images/i_zoom.png" style = "  min-height: 100%; min-width: 100%; width: 100%; height: 100%; cursor: pointer; cursor: pointer;"></img> <!--AccessBigPhotoView-->
+</button>
+</img>
+
+<button onclick='ToggleContent( "img_Pin_speed" ); ToggleText( "img_Pin_speed_button", "show more images ▲", "show more images ▼" );'><p name = "img_Pin_speed_button" class = "dropdown">show more images ▲</p></button>
+
+<div name = "img_Pin_speed">
+<img src = "./images/postsimg/63334cbbc2541754176cf3a1_HighresScreenshot00008-p-800.png" style = "width: 95%; height: 95%; margin-left: 5px;">
+<button onclick='ShowContent( "ImageView_Big" ); SetImage( "ImageView_Big_Img", "./images/postsimg/63334cbbc2541754176cf3a1_HighresScreenshot00008-p-800.png" )' style="background-color: rgba(0, 0, 0, 0); border-width: 0px; position: absolute; margin-top: 5px; margin-left: -30px;  height:20px;">
+<img src = "./images/i_zoom.png" style = "  min-height: 100%; min-width: 100%; width: 100%; height: 100%; cursor: pointer; cursor: pointer;"></img> <!--AccessBigPhotoView-->
+</button>
+</img>
+
+<img src = "./images/postsimg/63334cbb63db62fc708441d7_HighresScreenshot00002-p-800.png" style = "width: 95%; height: 95%; margin-left: 5px;">
+<button onclick='ShowContent( "ImageView_Big" ); SetImage( "ImageView_Big_Img", "./images/postsimg/63334cbb63db62fc708441d7_HighresScreenshot00002-p-800.png" )' style="background-color: rgba(0, 0, 0, 0); border-width: 0px; position: absolute; margin-top: 5px; margin-left: -30px;  height:20px;">
+<img src = "./images/i_zoom.png" style = "  min-height: 100%; min-width: 100%; width: 100%; height: 100%; cursor: pointer; cursor: pointer;"></img> <!--AccessBigPhotoView-->
+</button>
+</img>
+
+<img src = "./images/postsimg/63334cbcc58f61347fc0bc24_HighresScreenshot00001-p-800.png" style = "width: 95%; height: 95%; margin-left: 5px;">
+<button onclick='ShowContent( "ImageView_Big" ); SetImage( "ImageView_Big_Img", "./images/postsimg/63334cbcc58f61347fc0bc24_HighresScreenshot00001-p-800.png" )' style="background-color: rgba(0, 0, 0, 0); border-width: 0px; position: absolute; margin-top: 5px; margin-left: -30px;  height:20px;">
+<img src = "./images/i_zoom.png" style = "  min-height: 100%; min-width: 100%; width: 100%; height: 100%; cursor: pointer; cursor: pointer;"></img> <!--AccessBigPhotoView-->
+</button>
+</img>
+</div>
+
+<script> HideContent( "img_Pin_speed" ); </script>
+</th>
+</tr>
+</table>
+
+<p class = "tags">skills developed: blueprint, materials, effects, fast paced game loop design</p>
+
+</div>
+</div>
+
+
+<!--2020-->
+<div class = "ContentBoxSmall-wapper" name = "year" id = "2020">
+<div class="ContentBoxSmall-year">
+<h2 style="width:100%;">2020</h2>
+</div>
+</div>
+
+<div class = "ContentBoxSmall-wapper" name = "collage">
+<div class = "ContentBoxSmall" style ="padding-top: -10px;">
+
+<table style="width:100%; margin-top:0px; margin-bottom:-20px;">
+<tr>
+<th style="width:50%;"><h2>Time traveling cube</h2></th>
+<th style="width:50%"><img class="tagbox-long" src = "./images/i_tagcollage.png"></img></th>
+</tr>
+</table>
+
+<table style="width:100%;">
+
+<tr>
+<th style="width:auto; vertical-align: top;">
+<img src = "./images/postsimg/6332fb3e8346e20eb3f782b4_efsdfsadf-p-800.png" style = "width: 95%; height: 95%; margin-left: 5px;">
+<button onclick='ShowContent( "ImageView_Big" ); SetImage( "ImageView_Big_Img", "./images/postsimg/6332fb3e8346e20eb3f782b4_efsdfsadf-p-800.png" )' style="background-color: rgba(0, 0, 0, 0); border-width: 0px; position: absolute; margin-top: 5px; margin-left: -30px;  height:20px;">
+<img src = "./images/i_zoom.png" style = "  min-height: 100%; min-width: 100%; width: 100%; height: 100%; cursor: pointer; cursor: pointer;"></img> <!--AccessBigPhotoView-->
+</button>
+</img>
+</th>
+
+<th style="width:75%; vertical-align: top;">
+<p>This is a game I made where you use a combination of jumping, button pushing and time travel in order to solve tests and escape the underground lab known as z labs (it's shocking I know) but this basically works by using a sort of demo system but we can exclude objects from being affected from this playback. We also send the players movement demo data to another player like object which allows us to be able to see our past self in the game.</p>
+<p>The game was also made using the <a href = "https://love2d.org/" target="_blank">love 2d</a> game engine but I basically change everything in it and I do mean everything (even the crash screen) so that it would be to a standered I was happy with.</p>
+<p>the <a href = "https://ilikecreepers3334.itch.io/time-travle" target="_blank">itch.io link</a> for game.</p>
+</th>
+</tr>
+</table>
+
+<p class = "tags">skills developed: lua, engine creation, entity management, particle system development, level design with no level editor, intractable demo playback-ing, sound & music design</p>
+
+</div>
+</div>
+
+
+<!--2019-->
+<div class = "ContentBoxSmall-wapper" name = "year" id = "2019">
+<div class="ContentBoxSmall-year">
+<h2 style="width:100%;">2019</h2>
+</div>
+</div>
+
+<div class = "ContentBoxSmall-wapper" name = "indie">
+<div class = "ContentBoxSmall" style ="padding-top: -10px;">
+
+<table style="width:100%; margin-top:0px; margin-bottom:-20px;">
+<tr>
+<th style="width:50%;"><h2>Gravity shift</h2></th>
+<th style="width:50%"><img class="tagbox-long" src = "./images/i_tagindie.png"></img></th>
+</tr>
+</table>
+
+<table style="width:100%;">
+<tr>
+<th style="width:70%; vertical-align: top;">
+<p class = "margin">Gravity shift was a game I made in collage one day when I got board after completing all my work so I deicide to tinker around with a game engien that was new to me ate the time and I created this as a result.</p>
+<p class = "margin">The game is an endless runner where you have to dodge these cubes called void cubes otherwise you would die and to dodge them you would generally do it by inverting gravity so you fall to the roof or back down to the ground and you can also dodge the void cubes by using one of the three power up that either destroy, shield or teleport you around them.</p>
+<p class = "margin">The game is not available for public download as everyone getting it would have to pay a licencing fee for the music and I wanted to keep the game free.</p>
+</th>
+
+<th style="width:auto; vertical-align: top;">
+<img src = "./images/postsimg/Screenshot 2024-10-01 203951.png" style = "width: 95%; height: 95%; margin-left: 5px;">
+<button onclick='ShowContent( "ImageView_Big" ); SetImage( "ImageView_Big_Img", "./images/postsimg/Screenshot 2024-10-01 203951.png" )' style="background-color: rgba(0, 0, 0, 0); border-width: 0px; position: absolute; margin-top: 5px; margin-left: -30px; height:20px;">
+<img src = "./images/i_zoom.png" style = "min-height: 100%; min-width: 100%; width: 100%; height: 100%; cursor: pointer;"></img> <!--AccessBigPhotoView-->
+</button>
+
+</img>
+</th>
+</tr>
+</table>
+
+<p class = "tags">skills developed: lua, particle system development love 2D game development, sound design</p>
+
+</div>
+</div>
+
+<!--SECTION: big image viewer-->
+
+<div name = "ImageView_Big" style = "background-color: rgba(0, 0, 0, 0.4); position: fixed;width: 100vw; height: 100vh; top: 0px; left: 0px;"></div>
+<div name = "ImageView_Big" style = "background-color: rgba(0, 0, 0, 0.8); position: fixed;width: 75vw; height: 75vh; top: 12.5vh; left: 12.5vw;">
+<button onclick='HideContent( "ImageView_Big" );' style="background-color: rgba(0, 0, 0, 0); border-width: 0px; position: fixed; margin-top: 10px; margin-left: 10px; height:20px;">
+<img src = "./images/i_close.png" style = "min-height: 100%; min-width: 100%; width: 100%; height: 100%; cursor: pointer;"></img>
+</button>
+
+<img name = "ImageView_Big_Img" style="height:90%;  display: block; margin-left: auto; margin-right: auto; margin-top: 2.5%;"> </img>
+</div>
+
+
+<script>
+HideContent( "user-hidden" );
+HideContent( "ImageView_Big" );
+HideContent( "TitleBar_SizeCheck_R_small" )
+
+function SizeCheck()
+{
+	var WinWidth = window.innerWidth;
+	var WinHeight = window.innerHeight; 
+
+//for title bar 
+	var ElementTitleBarLeft = document.getElementsByName("TitleBar_SizeCheck_L")[0];
+	var ElementTitleBarRight = document.getElementsByName("TitleBar_SizeCheck_R")[0];
+
+	if(window.innerWidth <= 1560)
+	{
+		HideContent( "TitleBar_SizeCheck_R" );
+		ShowContent( "TitleBar_SizeCheck_R_small" );
+	}
+	else
+	{
+		HideContent( "TitleBar_SizeCheck_R_small" );
+
+		ShowContent( "TitleBar_SizeCheck_R" );
+		ElementTitleBarRight.style.display = "table-cell";
+	}
+
+	if(window.innerWidth <= 820)
+	{
+		HideContent( "TitleBar_SizeCheck_R_small" );
+	}
+	
+	if(window.innerWidth <= 542)
+	{
+		HideContent( "TitleBar_SizeCheck_L" );
+		HideContent( "TitleBar_SizeCheck_R_small" );
+	}
+	else
+	{
+		ShowContent( "TitleBar_SizeCheck_L" );
+	}
+
+}
+
+SizeCheck();
+</script>
+
+</body>
+</html>
+

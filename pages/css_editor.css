@@ -1,0 +1,37 @@
+input.title {
+  background-color: rgba(255, 255, 255, 0.2);
+  border: none;
+  color: white;
+  text-decoration: none;
+  margin: 4px 0px;
+  cursor: pointer;
+  float: left;
+  
+  height: 28px;
+  width: 98%;
+}
+
+select.searchtags {
+  background-color: rgba(0, 0, 0, 0.8);
+  border: none;
+  color: white;
+  text-decoration: none;
+  margin: 4px 0px;
+  cursor: pointer;
+  float: left;
+  
+  height: 28px;
+  width: 98.5%;
+}
+
+textarea.description {
+  background-color: rgba(255, 255, 255, 0.2);
+  border: none;
+  color: white;
+  text-decoration: none;
+  margin: 4px 4px;
+  cursor: pointer;
+  
+  height: 300px;
+  width: 80%;
+}

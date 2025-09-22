@@ -1,0 +1,47 @@
+
+<div class = "ContentBoxSmall-wapper" name = "uni">
+<div class="ContentBoxSmall" style ="padding-top: -10px;">
+
+<table style="width:100%; margin-top:0px; margin-bottom:-20px;">
+<tr>
+<th style="width:50%;"><h2>title here</h2></th>
+<th style="width:50%"><img class="tagbox-long" src = "./images/i_taguni.png"></img></th>
+</tr>
+</table>
+
+<table style="width:100%;">
+
+<tr>
+<th style="width:25%; vertical-align: top;">
+<p>image gose here</p>
+</th>
+
+<th style="width:75%; vertical-align: top;">
+<p>text gose here</p>
+</th>
+</tr>
+
+</table>
+</div>
+</div>
+
+<!--INSERT YEAR HERE-->
+<div class = "ContentBoxSmall-wapper" name = "year" id = "INSERT YEAR HERE">
+<div class="ContentBoxSmall-year">
+<h2 style="width:100%;">INSERT YEAR HERE</h2>
+</div>
+</div>
+
+
+<a href = "LINK HERE" target="_blank">LINK TEXT HERE</a>
+
+
+<button onclick='ToggleContent( "vid_UNIQUW_NAME_HERE" ); ToggleText( "vid_UNIQUW_NAME_HERE_button", "show video <", "show video >" );'><p name = "vid_UNIQUW_NAME_HERE_button"> show video &lt;</p></button>
+<div name = "vid_UNIQUW_NAME_HERE" class = "VideoWapper"><iframe src="EMBED LINK HERE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+<script> HideContent( "vid_UNIQUW_NAME_HERE" ); </script>
+
+<!--test-->
+
+<button onclick='ShowContent( "ImageView_Big" ); SetImage( "ImageView_Big_Img", "IMG HERE" )' style="background-color: rgba(0, 0, 0, 0); border-width: 0px; position: absolute; margin-top: 5px; margin-left: -30px; height:20px;">
+<img src = "./images/i_zoom.png" style = "  min-height: 100%; min-width: 100%; width: 100%; height: 100%;"></img> <!--AccessBigPhotoView-->
+</button>
