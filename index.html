@@ -278,6 +278,50 @@ SetRandomBackground()
 </div>
 
 
+<div class = "ContentBoxSmall-wapper" name = "indie">
+<div class = "ContentBoxSmall">
+<table style="width:100%; margin-top:0px; margin-bottom:-20px;">
+<tr>
+<th style="width:50%;"><h1>Istack</h1></th>
+<th style="width:50%"><img class="tagbox-long" src = "./images/i_tagindie.png"></img></th>
+</tr>
+</table>
+<table style="width:100%;">
+<tr>
+<th style="width:80%; vertical-align: top;">
+<p class = "margin">Istack is a highly modular coding language that is designed to allow anything and everything to be changed to meet your needs, making sandboxing an incredibly easy endeavor as well as making tweaks to better suit your needs, such as throwing away the thread isolation system which keeps everything thread-safe by restricting data to the thread it was made on, or by making the if statments also support else, which they currently dont.</p>
+<p class = "margin">The system can also easily be used as a scripted language for, say, video games, and it can easily bridge data like strings between the game and the script as well as functions for, say, moving characters. Its also about as fast as C++ because, in a lot of ways, it is just an abstract runtime version of C++ so lag is not as much of a worry.</p>
+<p class = "margin">The link to the GitHub repo that contains Istack can be found <a href = "https://github.com/bobbobson21/iStack" target="_blank">here</a>.</p>
+</th>
+<th style="width:auto; vertical-align: top;">
+<img src = "./images/postsimg/Screenshot 2026-06-05 010727.png" style = "width: 95%; height: 95%; ">
+<button onclick='ShowContent( "ImageView_Big" ); SetImage( "ImageView_Big_Img", "./images/postsimg/Screenshot 2026-06-05 010727.png" )' style="background-color: rgba(0, 0, 0, 0); border-width: 0px; position: absolute; margin-top: 5px; margin-left: -30px; height:20px;">
+<img src = "./images/i_zoom.png" style = "min-height: 100%; min-width: 100%; width: 100%; height: 100%; cursor: pointer; cursor: pointer;"></img> <!--AccessBigPhotoView-->
+</button>
+</img>
+
+<button onclick='ToggleContent( "img_post1780618782677" ); ToggleText( "img_post1780618782677_button", "show more images ▲", "show more images ▼" );'><p name = "img_post1780618782677_button" class = "dropdown">show more images ▲</p></button>
+<div name = "img_post1780618782677"> 
+
+<img src = "./images/postsimg/istacklogo.png" style = "width: 95%; height: 95%; ">
+<button onclick='ShowContent( "ImageView_Big" ); SetImage( "ImageView_Big_Img", "./images/postsimg/istacklogo.png" )' style="background-color: rgba(0, 0, 0, 0); border-width: 0px; position: absolute; margin-top: 5px; margin-left: -30px; height:20px;">
+<img src = "./images/i_zoom.png" style = "min-height: 100%; min-width: 100%; width: 100%; height: 100%; cursor: pointer; cursor: pointer;"></img> <!--AccessBigPhotoView-->
+</button>
+</img>
+
+</div>
+<script> HideContent( "img_post1780618782677" ); </script>
+</th>
+</tr>
+</table>
+
+<p class = "tags">skills developed: C++ dll creation, coding design</p>
+
+</div>
+</div>
+
+
+
 <div class = "ContentBoxSmall-wapper" name = "uni+indie">
 <div class = "ContentBoxSmall">
 <table style="width:100%; margin-top:0px; margin-bottom:-20px;">
@@ -1343,7 +1387,7 @@ SetRandomBackground()
 <!--SECTION: big image viewer-->
 
 <div name = "ImageView_Big" style = "background-color: rgba(0, 0, 0, 0.4); position: fixed;width: 100vw; height: 100vh; top: 0px; left: 0px;"></div>
-<div name = "ImageView_Big" style = "background-color: rgba(0, 0, 0, 0.8); position: fixed;width: 75vw; height: 75vh; top: 12.5vh; left: 12.5vw;">
+<div name = "ImageView_Big" style = "background-color: rgba(0, 0, 0, 0.8); position: fixed;width: 75vw; height: 75vh; top: 12.5vh; left: 12.5vw; overflow: hidden;">
 <button onclick='HideContent( "ImageView_Big" );' style="background-color: rgba(0, 0, 0, 0); border-width: 0px; position: fixed; margin-top: 10px; margin-left: 10px; height:20px;">
 <img src = "./images/i_close.png" style = "min-height: 100%; min-width: 100%; width: 100%; height: 100%; cursor: pointer;"></img>
 </button>
